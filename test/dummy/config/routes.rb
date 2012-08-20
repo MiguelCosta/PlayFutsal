@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
 
-  mount PlayFutsal::Engine => "/play_futsal"
+  mount PlayFutsal::Engine => "/futsal"
+
 end
