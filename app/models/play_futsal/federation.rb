@@ -1,8 +1,5 @@
 module PlayFutsal
-  class Federation < ActiveRecord::Base
-  	
-  	has_many :user
-  	
-    attr_accessible :country, :name
+  class Federation < PlayFutsal.federation_class.classify.constantize
+
   end
 end

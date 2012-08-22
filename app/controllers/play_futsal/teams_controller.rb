@@ -2,6 +2,7 @@ require_dependency "play_futsal/application_controller"
 
 module PlayFutsal
   class TeamsController < ApplicationController
+    before_filter :before_new, :only => [:new, :create, :edit, :update]
 
   	def index
   		@teams = Team.find :all
@@ -13,12 +14,10 @@ module PlayFutsal
   
   	def new
   		@team = Team.new
-  		@federations = Federation.find :all
   	end
   	
   	def edit
-		@team = Team.find params[:id]
-		@federations = Federation.find :all
+		  @team = Team.find params[:id]
   	end
 
   	def create
@@ -27,7 +26,6 @@ module PlayFutsal
   		if @team.save
   			redirect_to team_path(@team), :notice => 'Team create successfully created.'
   		else
-  			@federations = Federation.find :all
   			render :new
   		end
   	end
@@ -38,7 +36,6 @@ module PlayFutsal
   		if @team.update_attributes(params[:team])
   			redirect_to team_path(@team), :notice => 'Team successfully updated.'
   		else
-  			@Federation.find :all
   			render :edit
   		end
   	end
@@ -46,6 +43,12 @@ module PlayFutsal
 	def destroy
 	end
 
+  protected
+  def before_new
+    @federations = PlayFutsal.federation_class.classify.constantize.find :all
+    #@federations = Federation.all
+    #@athletes = User.find :all
+  end
 
   end
 end

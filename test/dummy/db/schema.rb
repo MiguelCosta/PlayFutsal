@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820224023) do
+ActiveRecord::Schema.define(:version => 20120822001158) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "federations", :force => true do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "federations", ["country_id"], :name => "index_federations_on_country_id"
 
   create_table "play_futsal_federations", :force => true do |t|
     t.string   "name"
