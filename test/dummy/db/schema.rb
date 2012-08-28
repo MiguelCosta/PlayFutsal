@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822001158) do
+ActiveRecord::Schema.define(:version => 20120828133705) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -28,11 +28,72 @@ ActiveRecord::Schema.define(:version => 20120822001158) do
 
   add_index "federations", ["country_id"], :name => "index_federations_on_country_id"
 
+  create_table "play_auth_authorizations", :force => true do |t|
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "name"
+    t.string   "link"
+    t.string   "image_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "play_auth_roles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "desc"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "play_auth_users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "password_salt"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "role_id"
+  end
+
+  add_index "play_auth_users", ["email"], :name => "index_play_auth_users_on_email", :unique => true
+  add_index "play_auth_users", ["reset_password_token"], :name => "index_play_auth_users_on_reset_password_token", :unique => true
+
+  create_table "play_futsal_athletes", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "number",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "play_futsal_federations", :force => true do |t|
     t.string   "name"
     t.string   "country"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "play_futsal_matches", :force => true do |t|
+    t.integer  "home_team_id",                :null => false
+    t.integer  "away_team_id",                :null => false
+    t.integer  "home_score",   :default => 0, :null => false
+    t.integer  "away_score",   :default => 0, :null => false
+    t.string   "desc"
+    t.datetime "datetime"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "play_futsal_team_athletes", :force => true do |t|

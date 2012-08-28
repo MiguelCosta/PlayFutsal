@@ -1,0 +1,7 @@
+<h2>Athletes</h2>
+
+<ul>
+<% @athletes.each do |athlete| %>
+  <li><%= athlete.user.display_name %></li>
+<% end %>
+</ul>

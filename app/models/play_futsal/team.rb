@@ -1,9 +1,19 @@
 module PlayFutsal
   class Team < ActiveRecord::Base
-  	belongs_to :federation, :class_name => "Federation"
 
-    attr_accessible :name, :federation_id
-    
-    #validates :name, :federation_id, presence => true
+    #### Relations ####
+
+    belongs_to :federation
+
+    has_many :athletes
+    has_many :coaches
+    has_many :matches
+
+
+    #### Accessors ####
+
+    # visible fields
+    attr_accessible :name
+
   end
 end

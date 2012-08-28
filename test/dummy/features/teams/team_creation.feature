@@ -11,7 +11,7 @@ Feature: Team creation
 		#       |  Web Manager  |
 		#       | Administrator |
 		#       |     Root      |
-		Given there exists the following federations in the system
+		Given the following federations exist in the system
 			| AAUM |
 			| AACM |
 		And I am at the team creation page
@@ -19,7 +19,7 @@ Feature: Team creation
 
 	Scenario: Create a team successfully
 
-		I should be able to crete a new team
+		I should be able to create a new team
 
 		When I fill in all fields for a team
 		And I submit that data
