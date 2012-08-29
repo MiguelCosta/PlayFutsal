@@ -1,0 +1,18 @@
+<h2><%= @athlete.name %>
+
+<div class='item'>
+  User profile: <%= play_auth.user_path(@athlete) %>
+</div>
+
+<div class='item'>
+  Team: <%= link_to @athlete.team.name, @athlete.team %>
+</div>
+
+<div class='item'>
+  Number: <%= @athlete.number %>
+</div>
+
+<div class='actions'>
+  <%= link_to 'Edit',     edit_athlete_path(@athlete) %>
+  <%= link_to 'Delete',   athlete_path(@athlete), :method => :delete %>
+</div>

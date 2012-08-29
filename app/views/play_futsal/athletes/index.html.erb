@@ -2,6 +2,8 @@
 
 <ul>
 <% @athletes.each do |athlete| %>
-  <li><%= athlete.user.display_name %></li>
+  <li><%= link_to athlete.user.display_name, athlete_path(athlete) %></li>
 <% end %>
 </ul>
+
+<%= link_to 'New Athlete', new_athlete_path %>

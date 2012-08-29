@@ -1,0 +1,23 @@
+<%= form_for @athlete do |f| %>
+  <% if @athlete.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@athlete.errors.count, 'error') %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @athlete.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='field'>
+    <%= f.label :name %>
+    <%= f.collection_select :user_id, PlayAuth::User.all, :id, :display_name, :selected => @athlete.user %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :team %>
+    <%= f.collection_select :team, PlayFutsal::Team.all, :id, :name, :selected => @athlete.team %>
+  </div>
+<% end %>
