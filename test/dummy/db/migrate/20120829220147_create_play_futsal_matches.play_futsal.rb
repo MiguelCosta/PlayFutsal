@@ -8,7 +8,7 @@ class CreatePlayFutsalMatches < ActiveRecord::Migration
       t.integer :home_score, :null => false, :default => 0
       t.integer :away_score, :null => false, :default => 0
 
-      t.string :desc
+      t.string   :desc
       t.datetime :datetime
       
       t.timestamps
