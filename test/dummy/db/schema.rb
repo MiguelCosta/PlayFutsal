@@ -11,22 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828133705) do
-
-  create_table "countries", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "federations", :force => true do |t|
-    t.string   "name"
-    t.integer  "country_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "federations", ["country_id"], :name => "index_federations_on_country_id"
+ActiveRecord::Schema.define(:version => 20120829220147) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -73,14 +58,8 @@ ActiveRecord::Schema.define(:version => 20120828133705) do
 
   create_table "play_futsal_athletes", :force => true do |t|
     t.integer  "user_id",    :null => false
+    t.integer  "team_id",    :null => false
     t.integer  "number",     :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "play_futsal_federations", :force => true do |t|
-    t.string   "name"
-    t.string   "country"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -96,39 +75,8 @@ ActiveRecord::Schema.define(:version => 20120828133705) do
     t.datetime "updated_at",                  :null => false
   end
 
-  create_table "play_futsal_team_athletes", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "play_futsal_team_referees", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "play_futsal_team_staffs", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "play_futsal_teams", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "play_futsal_tournament_federations", :force => true do |t|
-    t.integer  "tournament_id"
-    t.integer  "federation_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "play_futsal_tournament_federations", ["federation_id"], :name => "index_play_futsal_tournament_federations_on_federation_id"
-  add_index "play_futsal_tournament_federations", ["tournament_id"], :name => "index_play_futsal_tournament_federations_on_tournament_id"
-
-  create_table "play_futsal_tournaments", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

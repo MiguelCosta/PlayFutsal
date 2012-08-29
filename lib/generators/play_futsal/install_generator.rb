@@ -6,6 +6,7 @@ module PlayFutsal
 
       # define generator argument (only for Base instead of NamedBase)
       argument :user,       :type => :string, :default => 'PlayAuth::User'
+      argument :role,       :type => :string, :default => 'PlayAuth::Role'
       argument :federation, :type => :string, :default => 'Federation'
   
       desc "Generates configuration based on NAME"
