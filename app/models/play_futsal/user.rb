@@ -3,8 +3,7 @@ module PlayFutsal
     
     #### Relations ####
     
-    # Link to record in FutsalAthlete table
-    has_one :futsal_athlete, :class_name => 'PlayFutsal::Athlete'
+    has_one :athlete
 
   end
 end
