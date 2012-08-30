@@ -1,4 +1,3 @@
-
 module PlayFutsal
   
   puts 'PlayFutsal: Creating roles'
@@ -9,7 +8,6 @@ module PlayFutsal
 
   if Rails.env.development?
     puts 'PlayFutsal: Adding test users'
-
     user = User.create :first_name => 'Atleta',
                        :last_name  => 'Ateleta',
                        :email      => 'atleta@gmail.com',
