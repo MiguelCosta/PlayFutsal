@@ -13,7 +13,7 @@ module PlayFutsal
     #### Accessors ####
 
     # visible fields
-    attr_accessible :name
+    attr_accessible :name, :athletes
 
   end
 end

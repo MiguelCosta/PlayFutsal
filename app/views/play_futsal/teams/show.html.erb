@@ -4,6 +4,15 @@
   Name: <%= @team.name %>
 </div>
 
+<div class='item'>
+  Athletes:
+  <% @team.athletes.each do |athlete| %>
+  <ul>
+    <li><%= link_to athlete.user.display_name, athlete_path(athlete) %></li>
+  </ul>
+  <% end %>
+</div>
+
 <div class='actions'>
   <%= link_to 'Edit',     edit_team_path(@team) %>
   <%= link_to 'Delete',   team_path(@team), :method => :delete %>

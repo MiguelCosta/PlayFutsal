@@ -4,6 +4,7 @@ require 'rails/all'
 
 Bundler.require
 require "play_futsal"
+require "play_auth"
 
 module Dummy
   class Application < Rails::Application
@@ -14,9 +15,13 @@ module Dummy
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
+    config.paths['db/migrate'] += PlayAuth::Engine.paths['db/migrate'].existent
+    config.paths['db/migrate'] += PlayFutsal::Engine.paths['db/migrate'].existent
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
