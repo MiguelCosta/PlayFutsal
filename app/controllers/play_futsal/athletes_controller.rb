@@ -1,3 +1,5 @@
+require_dependency "play_futsal/application_controller"
+
 module PlayFutsal
   class AthletesController < ApplicationController
 
