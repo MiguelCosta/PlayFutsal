@@ -8,7 +8,7 @@
   Athletes:
   <% @team.athletes.each do |athlete| %>
   <ul>
-    <li><%= link_to athlete.user.display_name, athlete_path(athlete) %></li>
+    <li><%= link_to athlete.name, athlete_path(athlete) %></li>
   </ul>
   <% end %>
 </div>

@@ -18,14 +18,14 @@
 
   <!-- <div class='field'>
     <%= f.label :athletes %>
-    <%= f.collection_select :athletes, PlayAuth::User.all, :id, :display_name, :selected => @team.athletes %>
+    <%= f.collection_select :athletes, PlayAuth::User.all, :id, :name, :selected => @team.athletes %>
   </div>
  -->
 
   <div class='field'>
     <%= f.label :athletes %>
     <%= select_tag 'athlete_ids[]', 
-        options_for_select(@athletes.collect { |athl| [athl.user.display_name, athl.user.id] } , @team.athlete_ids), 
+        options_for_select(@athletes.collect { |athl| [athl.name, athl.user.id] } , @team.athlete_ids), 
         { :multiple => true, :size =>5, :id => "athletes" } %>
   </div>
 

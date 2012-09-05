@@ -25,7 +25,6 @@ module PlayFutsal
 
     def create
       @athlete = Athlete.new params[:athlete]
-
       if @athlete.save
         redirect_to athlete_path(@athlete), :notice => "Athlete #{@athlete.name} successfully created."
       else
@@ -37,7 +36,7 @@ module PlayFutsal
     def update
       @athlete = Athlete.find params[:id]
 
-      if @team.update_attributes params[:team]
+      if @athlete.update_attributes params[:athlete]
         redirect_to athlete_path(@athlete), :notice => "Athlete #{@athlete.name} successfully updated"
       else
         render :edit
