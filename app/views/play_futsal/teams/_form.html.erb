@@ -16,12 +16,6 @@
     <%= f.text_field :name %>
   </div>
 
-  <!-- <div class='field'>
-    <%= f.label :athletes %>
-    <%= f.collection_select :athletes, PlayAuth::User.all, :id, :display_name, :selected => @team.athletes %>
-  </div>
- -->
-
   <div class='field'>
     <%= f.label :athletes %>
     <%= select_tag 'athlete_ids[]', 

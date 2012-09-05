@@ -1,8 +1,8 @@
 class CreatePlayFutsalMatches < ActiveRecord::Migration
   def up
     create_table :play_futsal_matches do |t|
-      t.integer :home_team_id, :null => false
-      t.integer :away_team_id, :null => false
+      t.integer :home_team_id
+      t.integer :away_team_id
 
       t.integer :home_score, :null => false, :default => 0
       t.integer :away_score, :null => false, :default => 0
