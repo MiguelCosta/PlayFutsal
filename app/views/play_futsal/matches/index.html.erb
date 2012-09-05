@@ -1,0 +1,19 @@
+<h1>Listing Matches</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches.each do |m| %>
+      <tr>
+        <td><%= link_to m.desc, match_path(m) %></td>
+        <td><%= link_to 'Edit',   edit_match_path(m) %></td>
+        <td><%= link_to 'Delete', match_path(m), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Match', new_match_path %>

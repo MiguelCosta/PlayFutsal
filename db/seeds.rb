@@ -8,10 +8,10 @@ module PlayFutsal
 
   if Rails.env.development?
     puts 'PlayFutsal: Adding test users'
-    user = User.create :first_name => 'Atleta',
-                       :last_name  => 'Ateleta',
-                       :email      => 'atleta@gmail.com',
-                       :password   => 'atleta'
+    user = PlayAuth::User.create :first_name => 'Atleta',
+                                 :last_name  => 'Ateleta',
+                                 :email      => 'atleta@gmail.com',
+                                 :password   => 'atleta'
 
     user.roles << Role.find_by_name('FutsalAdmin')
   end

@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20120829231834) do
   end
 
   create_table "play_futsal_matches", :force => true do |t|
-    t.integer  "home_team_id",                :null => false
-    t.integer  "away_team_id",                :null => false
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
     t.integer  "home_score",   :default => 0, :null => false
     t.integer  "away_score",   :default => 0, :null => false
     t.string   "desc"
