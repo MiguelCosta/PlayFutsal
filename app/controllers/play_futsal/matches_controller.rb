@@ -11,6 +11,8 @@ module PlayFutsal
     def show
       @match  = Match.find params[:id]
       @events = Event.find_all_by_match_id params[:id]
+      @event  = Event.new
+      @athletes = @match.home_team.athletes + @match.away_team.athletes
     end
 
 
@@ -49,7 +51,20 @@ module PlayFutsal
 
 
     def destroy
-      
+      Match.destroy params[:id]
+      render :index
+    end
+
+
+    def add_event
+      @match = Match.find params[:id]
+      @event = @match.events.build params[:event]
+
+      if @event.save
+        redirect_to match_path(@match), :notice => 'Event successfully added'
+      else
+        render :show
+      end
     end
 
   end

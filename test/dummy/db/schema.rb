@@ -79,14 +79,14 @@ ActiveRecord::Schema.define(:version => 20120911152122) do
   end
 
   create_table "play_futsal_events", :force => true do |t|
-    t.integer  "match_id",        :null => false
-    t.integer  "event_type_id",   :null => false
-    t.integer  "player_id"
-    t.integer  "other_player_id"
+    t.integer  "match_id",         :null => false
+    t.integer  "event_type_id",    :null => false
+    t.integer  "athlete_id"
+    t.integer  "other_athlete_id"
     t.integer  "minute"
     t.string   "desc"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "play_futsal_matches", :force => true do |t|

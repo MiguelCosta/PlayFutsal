@@ -14,6 +14,7 @@ module PlayFutsal
                                  :password   => 'atleta'
 
     user.roles << Role.find_by_name('FutsalAdmin')
+    user.roles << Role.find_by_name('FutsalAthlete')
   end
 
   puts 'PlayFutsal: Adding all users with role PlayFutsal to PlayFutsal::Athlete'

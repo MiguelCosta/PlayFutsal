@@ -12,12 +12,26 @@
   <% end %>
 
   <div class='field'>
+    <%= f.label :desc %>
+    <%= f.text_field :desc %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :date %>
+    <%= f.datetime_select 'datetime' %>
+
+  <div class='field'>
     <%= f.label :home_team %>
-    <%= collection_select :match, :home_team, @teams, :id, :name %>
+    <%= collection_select :match, :home_team_id, @teams, :id, :name %>
   </div>
 
   <div class='field'>
     <%= f.label :away_team %>
-    <%= collection_select :match, :away_team, @teams, :id, :name %>
+    <%= collection_select :match, :away_team_id, @teams, :id, :name %>
+  </div>
+
+  <div class='form-actions'>
+    <%= f.submit 'Save' %>
+    <%= link_to 'Back', :back %>
   </div>
 <% end %>

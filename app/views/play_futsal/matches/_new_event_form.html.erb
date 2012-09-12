@@ -1,0 +1,20 @@
+<%= form_for @event, :url => new_match_event_path(@match) do |f| %>
+  <div class="field">
+    <%= f.label :minute %>
+    <%= f.select :minute, options_for_select((1..90).map {|m| ["#{m}", m]}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :event_type %>
+    <%= f.collection_select :event_type_id, PlayFutsal::EventType.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :athlete %>
+    <%= f.collection_select :athlete_id, @athletes, :id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Add' %>
+  </div>
+<% end %>

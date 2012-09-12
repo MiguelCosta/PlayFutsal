@@ -32,9 +32,11 @@
     <% @events.each do |e| %>
       <div class='match-event'>
         <div class='match-event-min'><%= e.minute %></div>
-        <div class='match-event-desc'><%= e.desc %></div>
+        <div class='match-event-desc'><%= e.event_type.name %></div>
       </div>
     <% end %>
   <% end %>
+
+  <%= render 'new_event_form' %>
 
 </div>

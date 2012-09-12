@@ -36,7 +36,7 @@ module PlayFutsal
       @team     = Team.new params[:team]  
 
       if params[:athlete_ids]
-          @team.athletes = Athelete.find(params[:athlete_ids]) 
+          @team.athletes = Athlete.find(params[:athlete_ids]) 
       else
           @team.athletes = []
        end

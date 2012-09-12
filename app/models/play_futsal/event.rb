@@ -12,6 +12,7 @@ module PlayFutsal
     #### Accessors ####
 
     attr_accessible :minute,
-                    :desc
+                    :desc,
+                    :event_type_id
   end
 end
