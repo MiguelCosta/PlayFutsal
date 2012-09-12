@@ -21,4 +21,9 @@ module PlayFutsal
     Athlete.create :user_id => user.id
   end
 
+  puts 'PlayFutsal: Creating default match event types'
+
+  ['Start', 'Half Time', 'End', 'Goal'].each do |name|
+    EventType.create :name => name
+  end
 end

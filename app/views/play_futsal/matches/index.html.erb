@@ -8,6 +8,7 @@
   <tbody>
     <% @matches.each do |m| %>
       <tr>
+        <td><%= m.datetime.to_formatted_s :short unless m.datetime.nil? %></td>
         <td><%= link_to m.desc, match_path(m) %></td>
         <td><%= link_to 'Edit',   edit_match_path(m) %></td>
         <td><%= link_to 'Delete', match_path(m), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

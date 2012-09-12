@@ -4,12 +4,13 @@ module PlayFutsal
   class MatchesController < ApplicationController
 
     def index
-      @matches = Match.all
+      @matches = Match.all :order => 'datetime'
     end
 
 
     def show
-      @match = Match.find params[:id]
+      @match  = Match.find params[:id]
+      @events = Event.find_all_by_match_id params[:id]
     end
 
 

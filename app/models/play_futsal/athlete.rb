@@ -2,11 +2,16 @@ module PlayFutsal
   class Athlete < ActiveRecord::Base
 
     #### Relations ####
+
     # Is associated with a user record
     belongs_to :user
 
     # Belongs to a single team
     belongs_to :team
+
+    # Has multiple events, and in some of them he is a secondary athlete
+    has_many :events, :primary_key => :athlete_id
+    has_many :other_events, :primary_key => :other_athlete_id
 
 
     #### Validations ####

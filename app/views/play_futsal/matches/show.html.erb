@@ -22,3 +22,19 @@
   <%= link_to 'Edit',     edit_match_path(@match) %>
   <%= link_to 'Delete',   match_path(@match), :method => :delete %>
 </div>
+
+<div class='match-events'>
+  <% if @events.empty? %>
+    <p>No match events yet</p>
+  <% else %>
+    <h2>Events</h2>
+
+    <% @events.each do |e| %>
+      <div class='match-event'>
+        <div class='match-event-min'><%= e.minute %></div>
+        <div class='match-event-desc'><%= e.desc %></div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
