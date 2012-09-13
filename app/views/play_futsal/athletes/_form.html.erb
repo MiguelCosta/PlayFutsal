@@ -13,7 +13,7 @@
 
   <div class='field'>
     <%= f.label :name %>
-    <%= f.collection_select :user_id, PlayAuth::User.all, :id, :name, :selected => @athlete.user %>
+    <%= f.collection_select :user_id, PlayAuth::User.find([@athlete.user_id]), :id, :name, :selected => @athlete.user %>
   </div>
 
   <div class='field'>
