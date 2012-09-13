@@ -1,19 +1,29 @@
-<h1>Listing Teams</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= link_to team.name, team_path(team) %></td>
-        <td><%= link_to 'Edit',   edit_team_path(team) %></td>
-        <td><%= link_to 'Delete', team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% content_for :title do 'Teams' end %>
 
-<%= link_to 'New Team', new_team_path %>
+<div class="hero-unit">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th># Athletes</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= link_to team.name, team_path(team) %></td>
+          <th><%= team.athletes.count %></td>
+          <td><%= link_to 'Edit',   edit_team_path(team) %></td>
+          <td><%= link_to 'Delete', team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= link_to 'New Team', new_team_path, :class => 'btn' %>
+  </div>
+</div>

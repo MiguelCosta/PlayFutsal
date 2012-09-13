@@ -48,5 +48,12 @@ module PlayFutsal
       
     end
 
+    def remove_from_team
+      @athlete = Athlete.find params[:id]
+      @athlete.team = nil
+      @athlete.save
+      redirect_to :back
+    end
+
   end
 end

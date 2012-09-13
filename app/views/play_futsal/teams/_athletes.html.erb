@@ -1,0 +1,20 @@
+<% if @team.nil? || @team.athletes.size == 0 %>
+  <p>No athletes yet!</p>
+<% else %>
+  <table class="table table-strip">
+    <thead>
+      <th>#</th>
+      <th>Name</th>
+      <th></th>
+    </thead>
+
+    <tbody>
+      <% @team.athletes.each do |athlete| %>
+        <tr>
+          <td><%= athlete.number %></td>
+          <td><%= athlete.name %></td>
+          <td><%= link_to 'Remove', remove_from_team_athlete_path(athlete), :method => :delete %></td>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

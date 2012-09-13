@@ -1,19 +1,10 @@
-<h2><%= @team.name %></h2>
+<%= content_for :title do @team.name end %>
 
-<div class='item'>
-  Name: <%= @team.name %>
-</div>
+<div class="hero-unit">
+  <p>Name: <%= @team.name %></p>
+  <p>Athletes:</p>
+  <%= render 'play_futsal/teams/athletes' %>
 
-<div class='item'>
-  Athletes:
-  <% @team.athletes.each do |athlete| %>
-  <ul>
-    <li><%= link_to athlete.name, athlete_path(athlete) %></li>
-  </ul>
-  <% end %>
-</div>
-
-<div class='actions'>
-  <%= link_to 'Edit',     edit_team_path(@team) %>
-  <%= link_to 'Delete',   team_path(@team), :method => :delete %>
+  <%= link_to 'Edit', edit_team_path(@team), :class => 'btn' %>
+  <%= link_to 'Delete', team_path(@team), :method => :delete, :class => 'btn' %>
 </div>

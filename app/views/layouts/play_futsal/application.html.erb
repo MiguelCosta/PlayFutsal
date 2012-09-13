@@ -1,20 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>PlayFutsal</title>
-  <%= stylesheet_link_tag    "play_futsal/application", :media => "all" %>
-  <%= javascript_include_tag "play_futsal/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "PlayFutsal" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag    "play_futsal/application", :media => "all" %>
+    <%= javascript_include_tag "play_futsal/application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <!--<header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%#= render 'layouts/play_futsal/navigation' %>
+        </div>
+      </nav>
+    </header>-->
 
-<div class="menu">
-  <%= render 'layouts/play_futsal/nav' %>
-</div>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="row">
+          <div class="span9 offset3">
+            <h1><%= yield(:title) %><h1>
+          </div>
+        </div>
+        
+        <div class="row">
+          <nav class="span3">
+            <%= render 'layouts/play_futsal/navigation' %>
+          </nav>
 
-<div class="content">
-  <%= yield %>
-</div>
-
-</body>
+          <div class="span9 content">
+            <%#= render 'layouts/play_futsal/messages' %>
+            <%= yield %>
+          </div>
+        </div>
+        <footer>
+        </footer>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
 </html>

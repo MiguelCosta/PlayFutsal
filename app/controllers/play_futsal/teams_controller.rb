@@ -21,19 +21,20 @@ module PlayFutsal
 
     def edit
       @team = Team.find params[:id]
+      update_team_athletes
 
       if @team
         @athletes_selected = @team.athletes
       end
 
       # only select athletes without team
-      @athletes = Athlete.where("team_id=null")
-
+      @athletes = Athlete.find_all_by_team_id nil
     end
 
 
     def create
-      @team     = Team.new params[:team]  
+      @team     = Team.new params[:team]
+      update_team_athletes
 
       if params[:athlete_ids]
           @team.athletes = Athlete.find(params[:athlete_ids]) 
@@ -70,5 +71,17 @@ module PlayFutsal
       
     end
 
+    protected
+
+      def update_team_athletes
+        if params[:athlete_ids]
+          params[:athlete_ids].each do |id|
+            athlete = Athlete.find id
+            unless athlete.nil?
+              @team.athletes << athlete
+            end
+          end
+        end
+      end
   end
 end
