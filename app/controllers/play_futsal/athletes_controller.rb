@@ -13,9 +13,9 @@ module PlayFutsal
     end
 
 
-    def new
-      @athlete = Athlete.new
-    end
+    # def new
+    #   @athlete = Athlete.new
+    # end
 
 
     def edit
@@ -23,14 +23,14 @@ module PlayFutsal
     end
 
 
-    def create
-      @athlete = Athlete.new params[:athlete]
-      if @athlete.save
-        redirect_to athlete_path(@athlete), :notice => "Athlete #{@athlete.name} successfully created."
-      else
-        render :new
-      end
-    end
+    # def create
+    #   @athlete = Athlete.new params[:athlete]
+    #   if @athlete.save
+    #     redirect_to athlete_path(@athlete), :notice => "Athlete #{@athlete.name} successfully created."
+    #   else
+    #     render :new
+    #   end
+    # end
 
 
     def update
