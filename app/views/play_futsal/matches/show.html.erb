@@ -1,42 +1,51 @@
-<h2><%= @match.desc %></h2>
+<%= content_for :title do @match.desc end %>
 
-<div class='item'>
-  Home Team:
-  <% if @match.home_team %>
-    <%= @match.home_team.name %>
-  <% else %>
-    Undefined
-  <% end %>
-</div>
-
-<div class='item'>
-  Away Team:
-  <% if @match.away_team %>
-    <%= @match.away_team.name %>
-  <% else %>
-    Undefined
-  <% end %>
-</div>
-
-<div class='actions'>
-  <%= link_to 'Edit',     edit_match_path(@match) %>
-  <%= link_to 'Delete',   match_path(@match), :method => :delete %>
-</div>
-
-<div class='match-events'>
-  <% if @events.empty? %>
-    <p>No match events yet</p>
-  <% else %>
-    <h2>Events</h2>
-
-    <% @events.each do |e| %>
-      <div class='match-event'>
-        <div class='match-event-min'><%= e.minute %></div>
-        <div class='match-event-desc'><%= e.event_type.name %></div>
-      </div>
+<div class="hero-unit">
+  <div class='item'>
+   Home Team:
+    <% if @match.home_team %>
+      <%= @match.home_team.name %>
+    <% else %>
+      Undefined
     <% end %>
-  <% end %>
+  </div>
 
-  <%= render 'new_event_form' %>
+  <div class='item'>
+    Away Team:
+    <% if @match.away_team %>
+      <%= @match.away_team.name %>
+    <% else %>
+      Undefined
+    <% end %>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Minute</th>
+        <th>Event</th>
+        <th>Player</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |e| %>
+        <tr>
+          <td><%= e.minute %></td>
+          <td><%= e.event_type.name %></td>
+          <td><%= e.athlete.name %></td>
+          <td><%= link_to 'Delete', match_event_path(@match, e), :method => :delete, :class => :btn %></td>
+        </tr>
+      <% end %>
+
+      <%= render 'new_event_form' %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit',     edit_match_path(@match), :class => :btn %>
+  <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => :btn %>
+</div>
+
 
 </div>

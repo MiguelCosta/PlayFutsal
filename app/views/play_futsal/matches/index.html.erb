@@ -1,21 +1,27 @@
-<h1>Matches</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Date/Time</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @matches.each do |m| %>
-      <tr>
-        <td><%= m.datetime.to_formatted_s :short unless m.datetime.nil? %></td>
-        <td><%= link_to m.desc, match_path(m) %></td>
-        <td><%= link_to 'Edit',   edit_match_path(m) %></td>
-        <td><%= link_to 'Delete', match_path(m), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= content_for :title do 'Matches' end %>
 
-<%= link_to 'New Match', new_match_path %>
+<div class="hero-unit">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Match</th>
+        <th>Date/Time</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @matches.each do |m| %>
+        <tr>
+          <td><%= link_to m.desc, match_path(m) %></td>
+          <td><%= m.datetime.to_formatted_s :short unless m.datetime.nil? %></td>
+          <td><%= link_to 'Edit',   edit_match_path(m) %></td>
+          <td><%= link_to 'Delete', match_path(m), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Match', new_match_path, :class => :btn %>
+</div>

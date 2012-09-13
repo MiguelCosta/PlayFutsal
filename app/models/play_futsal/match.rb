@@ -20,5 +20,17 @@ module PlayFutsal
                     :away_score,
                     :desc,
                     :datetime
+
+
+    #### Validators ####
+
+    validate  :teams_cant_be_equal
+
+    def teams_cant_be_equal
+      if home_team == away_team
+        errors.add(:base, "teams can't be equal")
+      end
+    end
+
   end
 end

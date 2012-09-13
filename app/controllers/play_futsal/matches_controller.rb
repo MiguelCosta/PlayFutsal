@@ -3,14 +3,21 @@ require_dependency "play_futsal/application_controller"
 module PlayFutsal
   class MatchesController < ApplicationController
 
+    #### Filters ####
+
+    before_filter :match_by_id, :only => [:show, :edit, :update]
+    before_filter :load_all_teams, :only => [:new, :edit, :create]
+
+
+    #### Actions ####
+
     def index
-      @matches = Match.all :order => 'datetime'
+      @matches = Match.find :all, :order => 'datetime'
     end
 
 
     def show
-      @match  = Match.find params[:id]
-      @events = Event.find_all_by_match_id params[:id]
+      @events = Event.find_all_by_match_id params[:id], :order => 'minute'
       @event  = Event.new
       @athletes = @match.home_team.athletes + @match.away_team.athletes
     end
@@ -18,13 +25,10 @@ module PlayFutsal
 
     def new
       @match = Match.new
-      @teams = Team.all
     end
 
 
     def edit
-      @match = Match.find params[:id]
-      @teams = Team.all
     end
 
 
@@ -40,8 +44,6 @@ module PlayFutsal
 
 
     def update
-      @match = Match.find params[:id]
-
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match successfully updated"
       else
@@ -56,16 +58,15 @@ module PlayFutsal
     end
 
 
-    def add_event
-      @match = Match.find params[:id]
-      @event = @match.events.build params[:event]
+    protected
 
-      if @event.save
-        redirect_to match_path(@match), :notice => 'Event successfully added'
-      else
-        render :show
+      def match_by_id
+        @match = Match.find params[:id]
       end
-    end
+
+      def load_all_teams
+        @teams = Team.all
+      end
 
   end
 end

@@ -13,6 +13,7 @@ module PlayFutsal
 
     attr_accessible :minute,
                     :desc,
+                    :athlete_id,
                     :event_type_id
   end
 end
