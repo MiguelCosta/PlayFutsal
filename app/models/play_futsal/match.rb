@@ -7,7 +7,7 @@ module PlayFutsal
     belongs_to :away_team, :class_name => 'PlayFutsal::Team'
 
     has_many :events
-
+    has_many :statistics
 
     #### Accessors ####
     

@@ -4,6 +4,8 @@ class CreatePlayFutsalAthletes < ActiveRecord::Migration
       t.integer :user_id, :null => false
       t.integer :team_id 
       t.integer :number 
+      t.integer :goals, :default => 0
+      t.integer :faults, :default => 0
       
       t.timestamps
     end
