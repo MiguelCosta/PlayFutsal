@@ -23,7 +23,7 @@ module PlayFutsal
 
     # visible fields
     attr_accessible :user_id, :team_id, :number, :user, :team,
-                            :goals, :faults
+                            :goals, :fouls
 
 
     ##### Methods ####

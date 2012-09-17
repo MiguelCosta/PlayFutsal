@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913233255) do
+ActiveRecord::Schema.define(:version => 20120911152122) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20120913233255) do
     t.integer  "team_id"
     t.integer  "number"
     t.integer  "goals",      :default => 0
-    t.integer  "faults",     :default => 0
+    t.integer  "fouls",      :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
@@ -101,18 +101,6 @@ ActiveRecord::Schema.define(:version => 20120913233255) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
-
-  create_table "play_futsal_statistics", :force => true do |t|
-    t.integer  "athlete_id"
-    t.integer  "match_id"
-    t.integer  "goals",      :default => 0
-    t.integer  "faults",     :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "play_futsal_statistics", ["athlete_id"], :name => "index_play_futsal_statistics_on_athlete_id"
-  add_index "play_futsal_statistics", ["match_id"], :name => "index_play_futsal_statistics_on_match_id"
 
   create_table "play_futsal_teams", :force => true do |t|
     t.string   "name",       :null => false

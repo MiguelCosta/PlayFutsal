@@ -1,0 +1,9 @@
+<%# assumes `athlete` variable exists %>
+
+<tr>
+  <td><%= athlete.id %></td>
+  <td><%= link_to athlete.name, athlete_path(athlete) %></td>
+  <td><%= athlete.goals %>
+  <td><%= athlete.fouls %>
+  <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
+</tr>

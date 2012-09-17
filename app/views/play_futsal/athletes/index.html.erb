@@ -6,15 +6,13 @@
       <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Goals</th>
+        <th>Fouls</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @athletes.each do |athlete| %>
-        <td><%= athlete.id %></td>
-        <td><%= link_to athlete.name, athlete_path(athlete) %></td>
-        <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
-      <% end %>
+      <%= render :partial => 'play_futsal/athletes/athletes', :collection => @athletes, :as => :athlete %>
     </tbody>
   </table>
 
