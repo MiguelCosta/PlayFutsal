@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Goals</th>
+      <th>Fouls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% athletes.each do |athlete| %>
+      <tr>
+        <td><%= athlete.id %></td>
+        <td><%= link_to athlete.name, athlete_path(athlete) %></td>
+        <td><%= athlete.goals %></td>
+        <td><%= athlete.fouls %></td>
+        <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

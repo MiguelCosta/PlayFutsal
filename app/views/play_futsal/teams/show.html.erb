@@ -3,7 +3,7 @@
 <div class="hero-unit">
   <p>Name: <%= @team.name %></p>
   <p>Athletes:</p>
-  <%= render 'play_futsal/teams/athletes' %>
+  <%= render :partial => 'play_futsal/athletes/table', :locals => { :athletes => @team.athletes } %>
 
   <%= link_to 'Edit', edit_team_path(@team), :class => 'btn' %>
   <%= link_to 'Delete', team_path(@team), :method => :delete, :class => 'btn' %>

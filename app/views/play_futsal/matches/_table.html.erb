@@ -1,0 +1,23 @@
+<%# assumes `match` variable exists %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Date/Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= link_to match.desc, match_path(match) %></td>
+        <td><%= match.datetime.to_formatted_s :short unless match.datetime.nil? %></td>
+        <td><%= link_to 'Edit',   edit_match_path(match) %></td>
+        <td><%= link_to 'Delete', match_path(match), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

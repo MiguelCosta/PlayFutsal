@@ -1,20 +1,7 @@
 <%= content_for :title do 'Athletes' end %>
 
 <div class="hero-unit">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Goals</th>
-        <th>Fouls</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%= render :partial => 'play_futsal/athletes/athletes', :collection => @athletes, :as => :athlete %>
-    </tbody>
-  </table>
+<%= render :partial => 'play_futsal/athletes/table', :locals => { :athletes => @athletes } %>
 
 <%= link_to 'New Athlete', new_athlete_path, :class => :btn %>
 </div>

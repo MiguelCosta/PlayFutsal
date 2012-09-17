@@ -1,0 +1,25 @@
+<%# assumes `team` variable exists %>
+
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th># Athletes</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.id %></td>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.athletes.count %></td>
+        <td><%= link_to 'Edit',   edit_team_path(team) %></td>
+        <td><%= link_to 'Delete', team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
