@@ -3,11 +3,10 @@ module PlayFutsal
 
     #### Relations ####
 
-    # Is associated with a user record
     belongs_to :user
-
-    # Belongs to a single team
     belongs_to :team
+
+    has_many :stats
 
     # Has multiple events, and in some of them he is a secondary athlete
     has_many :events, :primary_key => :athlete_id

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Goals</th>
+      <th>Fouls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th>Total</th>
+      <th><%= @athlete.goals %></th>
+      <th><%= @athlete.fouls %></th>
+    </tr>
+
+    <% @athlete.stats.each do |stat| %>
+      <tr>
+        <td><%= stat.match.desc %></td>
+        <td><%= stat.goals %></td>
+        <td><%= stat.fouls %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

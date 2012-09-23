@@ -1,18 +1,17 @@
-<h2><%= @athlete.name %></h2>
+<%= content_for :title do @athlete.name end %>
 
-<div class='item'>
-  <%= link_to  'User Profile', play_auth.user_path(@athlete.user) %>
-</div>
-
-<div class='item'>
-  Team: <%= link_to @athlete.team.name, @athlete.team %>
-</div>
-
-<div class='item'>
-  Number: <%= @athlete.number %>
-</div>
+<div class="hero-unit">
+<%= link_to  'User Profile', play_auth.user_path(@athlete.user) %>
+<br />
+Team: <%= link_to @athlete.team.name, @athlete.team %>
+<br />
+Number: <%= @athlete.number %>
+<br />
 
 <div class='actions'>
   <%= link_to 'Edit',     edit_athlete_path(@athlete) %>
  <!--  <%= link_to 'Delete',   athlete_path(@athlete), :method => :delete %> -->
+</div>
+
+<%= render :partial => 'stats' %>
 </div>
