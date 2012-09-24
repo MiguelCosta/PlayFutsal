@@ -2,50 +2,20 @@
 
 <div class="hero-unit">
   <div class='item'>
-   Home Team:
-    <% if @match.home_team %>
-      <%= @match.home_team.name %>
-    <% else %>
-      Undefined
-    <% end %>
+      <h3>
+        <%= link_to @match.home_team.name, team_path(@match.home_team) %>
+        vs
+        <%= link_to @match.away_team.name, team_path(@match.away_team) %>
+      </h3>
   </div>
 
-  <div class='item'>
-    Away Team:
-    <% if @match.away_team %>
-      <%= @match.away_team.name %>
-    <% else %>
-      Undefined
-    <% end %>
-  </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Minute</th>
-        <th>Event</th>
-        <th>Player</th>
-        <th></th>
-      </tr>
-    </thead>
+  <%= render :partial => 'play_by_play' %>
 
-    <tbody>
-      <% @events.each do |e| %>
-        <tr>
-          <td><%= e.minute %></td>
-          <td><%= e.event_type.name %></td>
-          <td><%= e.athlete.name %></td>
-          <td><%= link_to 'Delete', match_event_path(@match, e), :method => :delete, :class => :btn %></td>
-        </tr>
-      <% end %>
-
-      <%= render 'new_event_form' %>
-    </tbody>
-  </table>
 
   <%= link_to 'Edit',     edit_match_path(@match), :class => :btn %>
   <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => :btn %>
 </div>
 
 
-</div>
+<%= render :partial => 'stats' %>

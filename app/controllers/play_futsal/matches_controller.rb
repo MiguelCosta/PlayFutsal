@@ -18,8 +18,9 @@ module PlayFutsal
 
     def show
       @events = Event.find_all_by_match_id params[:id], :order => 'minute'
-      @event  = Event.new
       @athletes = @match.home_team.athletes + @match.away_team.athletes
+
+      @event  = Event.new
     end
 
 

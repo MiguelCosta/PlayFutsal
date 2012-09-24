@@ -1,0 +1,25 @@
+<h3>Play by Play</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Minute</th>
+      <th>Event</th>
+      <th>Player</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |e| %>
+      <tr>
+        <td><%= e.minute %></td>
+        <td><%= e.event_type.name %></td>
+        <td><%= e.athlete.name %></td>
+        <td><%= link_to 'Delete', match_event_path(@match, e), :method => :delete, :class => :btn %></td>
+      </tr>
+    <% end %>
+
+    <%= render 'new_event_form' %>
+  </tbody>
+</table>

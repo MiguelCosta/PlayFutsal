@@ -1,0 +1,10 @@
+<%= content_for :title do @group.name %>
+
+<div class="hero-unit">
+  <%= render :partial => 'table', :locals => { :group => @group } %>
+
+  <div class='actions'>
+    <%= link_to 'Edit', edit_group_path(@group) %>
+    <%= link_to 'Delete', group_path(@group), :method => :delete %>
+  </div>
+</div>

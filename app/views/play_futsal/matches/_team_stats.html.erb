@@ -1,0 +1,20 @@
+<h3><%= team.name %></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Goals</th>
+      <th>Fouls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% team.athletes.each do |athlete| %>
+        <tr>
+          <td><%= athlete.name %></td>
+          <td><%=  %>
+        </tr>
+      <% end %>
+    </tr>
+  </tbody>

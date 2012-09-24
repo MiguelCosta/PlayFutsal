@@ -4,8 +4,11 @@ class CreatePlayFutsalMatches < ActiveRecord::Migration
       t.integer :home_team_id
       t.integer :away_team_id
 
-      t.integer :home_score, :null => false, :default => 0
-      t.integer :away_score, :null => false, :default => 0
+      t.integer :home_team_stats
+      t.integer :away_team_stats
+
+      #t.integer :home_score, :null => false, :default => 0
+      #t.integer :away_score, :null => false, :default => 0
 
       t.string   :desc
       t.datetime :datetime

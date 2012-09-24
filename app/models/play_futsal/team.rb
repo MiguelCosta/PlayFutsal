@@ -4,16 +4,21 @@ module PlayFutsal
     #### Relations ####
 
     belongs_to :federation
+    belongs_to :group
 
     has_many :athletes
     has_many :coaches
     has_many :matches
 
+    has_many :team_stats
+
 
     #### Accessors ####
 
     # visible fields
-    attr_accessible :name, :athletes
+    attr_accessible :name,
+                    :athletes,
+                    :team_stats
 
   end
 end

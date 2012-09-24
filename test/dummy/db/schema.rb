@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922232341) do
+ActiveRecord::Schema.define(:version => 20120924152624) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(:version => 20120922232341) do
   add_index "play_auth_users", ["email"], :name => "index_play_auth_users_on_email", :unique => true
   add_index "play_auth_users", ["reset_password_token"], :name => "index_play_auth_users_on_reset_password_token", :unique => true
 
+  create_table "play_futsal_athlete_stats", :force => true do |t|
+    t.integer "match_id"
+    t.integer "athlete_id"
+    t.integer "goals",      :default => 0
+    t.integer "fouls",      :default => 0
+  end
+
   create_table "play_futsal_athletes", :force => true do |t|
     t.integer  "user_id",                   :null => false
     t.integer  "team_id"
@@ -91,22 +98,26 @@ ActiveRecord::Schema.define(:version => 20120922232341) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "play_futsal_groups", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "play_futsal_matches", :force => true do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
-    t.integer  "home_score",   :default => 0, :null => false
-    t.integer  "away_score",   :default => 0, :null => false
+    t.integer  "home_team_stats"
+    t.integer  "away_team_stats"
     t.string   "desc"
     t.datetime "datetime"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  create_table "play_futsal_stats", :force => true do |t|
+  create_table "play_futsal_team_stats", :force => true do |t|
     t.integer "match_id"
-    t.integer "athlete_id"
-    t.integer "goals"
-    t.integer "fouls"
+    t.integer "team_id"
+    t.integer "goals",    :default => 0
+    t.integer "fouls",    :default => 0
   end
 
   create_table "play_futsal_teams", :force => true do |t|

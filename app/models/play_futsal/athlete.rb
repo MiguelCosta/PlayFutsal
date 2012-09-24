@@ -6,7 +6,7 @@ module PlayFutsal
     belongs_to :user
     belongs_to :team
 
-    has_many :stats
+    has_many :athlete_stats
 
     # Has multiple events, and in some of them he is a secondary athlete
     has_many :events, :primary_key => :athlete_id
@@ -21,8 +21,14 @@ module PlayFutsal
     ##### Accessors ####
 
     # visible fields
-    attr_accessible :user_id, :team_id, :number, :user, :team,
-                            :goals, :fouls
+    attr_accessible :user,
+                    :team,
+                    :athlete_stats,
+                    :number,
+                    :user,
+                    :team,
+                    :goals,
+                    :fouls
 
 
     ##### Methods ####

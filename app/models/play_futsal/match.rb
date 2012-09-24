@@ -5,19 +5,19 @@ module PlayFutsal
 
     belongs_to :home_team, :class_name => 'PlayFutsal::Team'
     belongs_to :away_team, :class_name => 'PlayFutsal::Team'
+    belongs_to :group
 
     has_many :events
-    has_many :stats
+    has_many :athlete_stats
+    has_many :team_stats
 
     #### Accessors ####
     
-    attr_accessible :home_team_id,
-                    :away_team_id,
-                    :home_team,
+    attr_accessible :home_team,
                     :away_team,
                     :events,
-                    :home_score,
-                    :away_score,
+                    :athlete_stats,
+                    :team_stats,
                     :desc,
                     :datetime
 

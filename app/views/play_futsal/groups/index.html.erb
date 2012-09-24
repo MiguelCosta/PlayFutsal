@@ -1,0 +1,7 @@
+<%= content_for :title do 'Groups' end %>
+
+<div class="hero-unit">
+  <%= render :partial => 'table', :locals => { :groups => @groups } %>
+
+  <%= link_to 'New Group', new_group_path, :class => :btn %>
+</div>
