@@ -43,7 +43,7 @@ module PlayFutsal
        end
 
       if @group.save
-        redirect_to group_path(@group), :notice => "Group #{@team.name} successfully created."
+        redirect_to group_path(@group), :notice => "Group #{@group.name} successfully created."
       else
         render :new
       end
@@ -73,7 +73,7 @@ module PlayFutsal
 
     protected
 
-      def update_group_athletes
+      def update_group_teams
         if params[:team_ids]
           params[:team_ids].each do |id|
             team = Team.find id

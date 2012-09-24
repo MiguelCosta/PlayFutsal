@@ -1,0 +1,27 @@
+<%= form_for @group do |f| %>
+  <% if @group.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@group.errors.count, 'error') %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :teams %>
+    <%= select_tag "team_ids[]", options_for_teams(@group), { :multiple => true, :size => 6 } %>
+  </div>
+
+  <%= f.submit 'Save', :class => :btn %>
+  <%= link_to 'Back', :back, :class => :btn %>
+
+<% end %>

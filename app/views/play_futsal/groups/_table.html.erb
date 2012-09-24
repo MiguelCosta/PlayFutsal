@@ -1,29 +1,6 @@
 <% groups.each do |group| %>
 
-  <h3><%= group.name %></h3>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Team</th>
-        <th>Matches Played</th>
-        <th>Goals</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% teams.each_with_index do |team, i| %>
-        <tr>
-          <td><%= i+1 %></td>
-          <td><%= link_to team.name, team_path(team) %></td>
-          <td><%= team.matches.count %></td>
-          <td><%= team.goals %></td>
-          <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render :partial => 'group', :locals => { :group => group } %>
 
   <hr />
 

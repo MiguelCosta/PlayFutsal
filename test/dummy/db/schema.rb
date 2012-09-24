@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
   end
 
   create_table "play_futsal_teams", :force => true do |t|
+    t.integer  "group_id"
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -16,9 +16,11 @@ module PlayFutsal
     #### Accessors ####
 
     # visible fields
-    attr_accessible :name,
+    attr_accessible :group,
                     :athletes,
-                    :team_stats
+                    :matches,
+                    :team_stats,
+                    :name
 
   end
 end

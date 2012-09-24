@@ -26,6 +26,7 @@ module PlayFutsal
                     :athlete_stats,
                     :number,
                     :user,
+                    :user_id,
                     :team,
                     :goals,
                     :fouls

@@ -1,6 +1,7 @@
 class CreatePlayFutsalTeams < ActiveRecord::Migration
   def up
     create_table :play_futsal_teams do |t|
+      t.integer :group_id
       t.string :name, :null => false
 
       t.timestamps

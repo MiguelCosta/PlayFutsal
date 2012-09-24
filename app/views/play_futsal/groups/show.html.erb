@@ -1,7 +1,7 @@
-<%= content_for :title do @group.name %>
+<%= content_for :title do @group.name end %>
 
 <div class="hero-unit">
-  <%= render :partial => 'table', :locals => { :group => @group } %>
+  <%= render :partial => 'group', :locals => { :group => @group } %>
 
   <div class='actions'>
     <%= link_to 'Edit', edit_group_path(@group) %>
