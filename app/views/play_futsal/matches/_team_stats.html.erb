@@ -1,5 +1,5 @@
 <h3><%= team.name %></h3>
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>Player</th>
@@ -13,8 +13,10 @@
       <% team.athletes.each do |athlete| %>
         <tr>
           <td><%= athlete.name %></td>
-          <td><%=  %>
+          <td><%= athlete.goals %></td>
+          <td><%= athlete.fouls %></td>
         </tr>
       <% end %>
     </tr>
   </tbody>
+</table>

@@ -14,7 +14,7 @@
       <th><%= @athlete.fouls %></th>
     </tr>
 
-    <% @athlete.stats.each do |stat| %>
+    <% @athlete.athlete_stats.each do |stat| %>
       <tr>
         <td><%= stat.match.desc %></td>
         <td><%= stat.goals %></td>

@@ -27,9 +27,10 @@ module PlayFutsal
                     :number,
                     :user,
                     :user_id,
-                    :team,
+                    :team_id,
                     :goals,
-                    :fouls
+                    :fouls,
+                    :athlete_stats
 
 
     ##### Methods ####
