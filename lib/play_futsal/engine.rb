@@ -3,6 +3,10 @@ module PlayFutsal
     isolate_namespace PlayFutsal
 
     config.autoload_paths += Dir["#{config.root}/lib","#{config.root}/lib/**/"]
+    config.autoload_paths += %W(
+      #{config.root}/app/controllers/concerns
+      #{config.root}/app/models/concerns
+    )
 
     config.i18n.load_path += Dir[PlayFutsal::Engine.root.join('config', 'locales', '**', '*.{rb,yml}')]
 

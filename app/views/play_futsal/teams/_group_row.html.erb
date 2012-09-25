@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to team.name, team_path(team) %></td>
+  <td><%= team.matches.count %></td>
+  <td><%= team.goals %></td>
+  <td><%= link_to 'Edit', edit_team_path(team) %></td>
+</tr>

@@ -122,9 +122,11 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
 
   create_table "play_futsal_teams", :force => true do |t|
     t.integer  "group_id"
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                      :null => false
+    t.integer  "goals",      :default => 0
+    t.integer  "fouls",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end

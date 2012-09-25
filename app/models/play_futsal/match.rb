@@ -12,6 +12,7 @@ module PlayFutsal
     has_one :home_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
     has_one :away_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
 
+
     #### Accessors ####
     
     attr_accessible :home_team,

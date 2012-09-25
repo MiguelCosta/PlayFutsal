@@ -3,7 +3,6 @@
 <table class="table table-stripped">
   <thead>
     <tr>
-      <th>#</th>
       <th>Name</th>
       <th># Athletes</th>
       <th></th>
@@ -14,7 +13,6 @@
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= team.id %></td>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.athletes.count %></td>
         <td><%= link_to 'Edit',   edit_team_path(team) %></td>

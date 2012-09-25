@@ -4,6 +4,9 @@ class CreatePlayFutsalTeams < ActiveRecord::Migration
       t.integer :group_id
       t.string :name, :null => false
 
+      t.integer :goals, :default => 0
+      t.integer :fouls, :default => 0
+
       t.timestamps
     end
   end
