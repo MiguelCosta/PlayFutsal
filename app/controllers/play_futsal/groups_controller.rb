@@ -21,7 +21,7 @@ module PlayFutsal
 
     def edit
       @group = Group.find params[:id]
-      update_group_groups
+      update_group_teams
 
       if @group
         @teams_selected = @group.teams

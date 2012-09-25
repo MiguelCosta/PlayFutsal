@@ -11,6 +11,7 @@ module PlayFutsal
     has_many :athlete_stats
     has_many :team_stats
 
+
     #### Accessors ####
     
     attr_accessible :home_team,
