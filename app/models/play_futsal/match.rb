@@ -1,6 +1,6 @@
 module PlayFutsal
   class Match < ActiveRecord::Base
-    
+
     #### Relations ####
 
     belongs_to :home_team, :class_name => 'PlayFutsal::Team'
@@ -16,11 +16,17 @@ module PlayFutsal
     
     attr_accessible :home_team,
                     :away_team,
+                    :home_team_id,
+                    :away_team_id,
                     :events,
                     :athlete_stats,
                     :team_stats,
                     :desc,
                     :datetime
+
+
+    #### Scopes ####
+
 
 
     #### Validators ####
