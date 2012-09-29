@@ -5,7 +5,7 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update]
+    before_filter :match_by_id, :only => [:show, :edit, :update, :begin]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
 
 
@@ -58,6 +58,11 @@ module PlayFutsal
       render :index
     end
 
+    # start the game
+    def begin
+      @match.create_match_stats
+      redirect_to match_path(@match), :notice => "Match started"
+    end
 
     protected
 

@@ -7,7 +7,10 @@ PlayFutsal::Engine.routes.draw do
   end
 
   resources :matches do
-    resources :events
+    resources :events 
+    member do
+        put 'begin'
+      end
   end
   
 	resources :teams
