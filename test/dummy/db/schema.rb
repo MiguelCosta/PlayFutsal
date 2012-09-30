@@ -109,8 +109,10 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
     t.integer  "away_team_stats"
     t.string   "desc"
     t.datetime "datetime"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "started",         :default => false
+    t.boolean  "finished",        :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "play_futsal_team_stats", :force => true do |t|

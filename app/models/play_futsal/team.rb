@@ -3,7 +3,6 @@ module PlayFutsal
 
     #### Relations ####
 
-    belongs_to :federation
     belongs_to :group
 
     has_many :athletes
@@ -30,7 +29,7 @@ module PlayFutsal
 
     #### Methods ####
     def matches
-      home_matches + away_matches
+      Match.by_team(self)
     end
 
   end

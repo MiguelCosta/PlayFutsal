@@ -22,4 +22,9 @@ group :development do
   gem 'awesome_print'
 end
 
+group :development, :test do
+  gem 'factory_girl'
+  gem 'faker'
+end
+
 gem 'play_auth', :git => 'git@github.com:naps62/PlayAuth.git'

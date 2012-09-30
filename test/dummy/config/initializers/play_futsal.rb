@@ -1,3 +1,3 @@
 PlayFutsal.user_class       = "PlayAuth::User"
 PlayFutsal.role_class       = 'PlayAuth::Role'
-PlayFutsal.federation_class = "Federation"
+PlayFutsal.federation_class = "PlayFutsal::Federation"

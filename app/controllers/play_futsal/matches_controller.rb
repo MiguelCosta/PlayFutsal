@@ -60,8 +60,13 @@ module PlayFutsal
 
     # start the game
     def begin
+      @match.update_attributes :started => true
       @match.create_match_stats
       redirect_to match_path(@match), :notice => "Match started"
+    end
+
+    def end
+      @match.update_attributes :finished => false
     end
 
     protected

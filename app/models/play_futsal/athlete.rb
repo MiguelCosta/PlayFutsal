@@ -14,7 +14,7 @@ module PlayFutsal
 
 
     #### Validations ####
-    validates_uniqueness_of :number, :scope => :team_id
+    validates_uniqueness_of :number, :scope => :team_id, :allow_nil => true
     validates_uniqueness_of :user_id
 
 
