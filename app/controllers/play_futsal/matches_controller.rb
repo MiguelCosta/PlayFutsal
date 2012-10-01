@@ -60,13 +60,22 @@ module PlayFutsal
 
     # start the game
     def begin
-      @match.update_attributes :started => true
-      @match.create_match_stats
-      redirect_to match_path(@match), :notice => "Match started"
+      @match.begin
+      if @match.update_attributes params[:match]
+        redirect_to match_path(@match), :notice => "Match started"
+      else
+        render :show
+      end
     end
 
+    # finish the game
     def end
-      @match.update_attributes :finished => false
+      @match.end
+      if @match.update_attributes params[:match]
+        redirect_to match_path(@match), :notice => "Match finished"
+      else
+        render :show
+      end
     end
 
     protected
