@@ -4,7 +4,7 @@ module PlayFutsal
     #### Relations ####
 
     belongs_to :match, :dependent => :destroy
-    belongs_to :team
+    belongs_to :team, :dependent => :destroy
 
 
     #### Accessors ####

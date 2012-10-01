@@ -23,21 +23,31 @@ module PlayFutsal
                     :athlete_stats,
                     :home_team_stats,
                     :away_team_stats,
+                    :started,
+                    :finished,
                     :desc,
-                    :datetime,
-                    :home_team_id,
-                    :away_team_id
+                    :datetime
+
 
 
     #### Scopes ####
 
+    # matches belonging to a group
+    scope :in_group, lambda { where "group_id IS NOT NULL" }
+
+    scope :by_team, lambda  { |t| where "home_team_id = ? OR away_team_id = ?", t.id, t.id }
+
+    # match completion state
+    scope :not_started, lambda { where :started  => false }
+    scope :started,     lambda { where :started  => true  }
+    scope :finished,    lambda { where :finished => true  }
 
 
     #### Validators ####
 
-    validate  :teams_cant_be_equal
+    validate :teams_cant_be_equal
+    validate :must_start_before_finish
     validates :desc, :presence => true
-
 
     #### Callbacks ####
 
@@ -61,13 +71,20 @@ module PlayFutsal
     end
 
 
+
     #### Private Methods ####
     private
 
     # guarantees that the two teams are not the same
     def teams_cant_be_equal
       if home_team == away_team
-        errors.add(:base, "teams can't be equal")
+        errors.add :base, "teams can't be equal"
+      end
+    end
+
+    def must_start_before_finish
+      if finished == true && started == false
+        errors.add :started, "Match has to start before it can finish"
       end
     end
 

@@ -6,7 +6,7 @@ module PlayFutsal
 
     def create
       @match = Match.find params[:match_id]
-      @athlete = Athlete.find.params[:athlete:id]
+      @athlete = Athlete.find params[:athlete_id]
       @statistc = @match.statistcs.build params[:statistic]
 
       if @statistc.save

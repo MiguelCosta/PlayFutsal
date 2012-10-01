@@ -3,13 +3,18 @@ require_dependency "play_futsal/application_controller"
 module PlayFutsal
   class GroupsController < ApplicationController
 
+    #### Filters ####
+
+    before_filter :group_by_id, :only => [:show, :edit, :update]
+
+
+    #### Actions ####
+
     def index
       @groups = Group.all
     end
 
     def show
-      @group = Group.find params[:id]
-      @teams = @group.teams
     end
 
 
@@ -20,7 +25,6 @@ module PlayFutsal
 
 
     def edit
-      @group = Group.find params[:id]
       update_group_teams
 
       if @group
@@ -51,8 +55,6 @@ module PlayFutsal
 
 
     def update
-      @group = Group.find params[:id]
-      
       if params[:team_ids]
           @group.teams = Team.find params[:team_ids]
       else
@@ -72,6 +74,11 @@ module PlayFutsal
     end
 
     protected
+
+      #### Filters
+      def group_by_id
+        @group = Group.find params[:id]
+      end
 
       def update_group_teams
         if params[:team_ids]
