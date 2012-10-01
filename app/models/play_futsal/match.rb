@@ -36,6 +36,7 @@ module PlayFutsal
     #### Validators ####
 
     validate  :teams_cant_be_equal
+    validates :desc, :presence => true
 
 
     #### Callbacks ####
@@ -46,7 +47,8 @@ module PlayFutsal
       ActiveRecord::Base.transaction do
         #Home Team
         self.home_team.athletes.each do |athlete|
-          self.athlete_stats.create :athlete => athlete
+            #athlete.athlete_stats.where :match => self
+            self.athlete_stats.create :athlete => athlete if (athlete.athlete_stats.where :match => self).blank?
         end
         self.create_home_team_stats :team => home_team
 
