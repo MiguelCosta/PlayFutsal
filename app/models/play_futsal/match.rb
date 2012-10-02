@@ -47,26 +47,38 @@ module PlayFutsal
 
     validate :teams_cant_be_equal
     validate :must_start_before_finish
-
+    validates :desc, :presence => true
 
     #### Callbacks ####
 
     # callback for creating a stats record
     # for each player and team associated with this match
-    def create_match_stats
-      ActiveRecord::Base.transaction do
-        #Home Team
-        self.home_team.athletes.each do |athlete|
-          self.athlete_stats.create :athlete => athlete
-        end
-        self.create_home_team_stats :team => home_team
+    def begin
+        if !started
+            self.started = true
+            ActiveRecord::Base.transaction do
+                #Home Team
+                self.home_team.athletes.each do |athlete|
+                    self.athlete_stats.create :athlete => athlete
+                end
+                self.create_home_team_stats :team => home_team
 
-        #Away Team
-        self.away_team.athletes.each do |athlete|
-          self.athlete_stats.create :athlete => athlete
+                #Away Team
+                self.away_team.athletes.each do |athlete|
+                self.athlete_stats.create :athlete => athlete
+                end
+                self.create_away_team_stats :team => away_team
+            end
         end
-        self.create_away_team_stats :team => away_team
-      end
+    end
+
+    # callback for commit a stats record
+    def end
+        if !finished
+            self.finished = true
+
+            # não está terminado este método
+        end
     end
 
 

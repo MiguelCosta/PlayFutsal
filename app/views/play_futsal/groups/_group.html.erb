@@ -2,8 +2,9 @@
   <thead>
     <tr>
       <th>Team</th>
-      <th>Matches Played</th>
+      <th>Games</th>
       <th>Goals</th>
+      <th>Points</th>
     </tr>
   </thead>
 
@@ -11,7 +12,8 @@
     <% group.teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
-        <td><%= team.matches.in_group.finished.count %></td>
+        <td><%= team.matches.finished.count %></td>
+        <td><%= team.goals %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
       </tr>
     <% end %>

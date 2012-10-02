@@ -10,6 +10,7 @@ PlayFutsal::Engine.routes.draw do
     resources :events 
     member do
         put 'begin'
+        put 'end'
       end
   end
   
