@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924152624) do
+ActiveRecord::Schema.define(:version => 20120930181420) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
   create_table "play_futsal_matches", :force => true do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
+    t.integer  "group_id"
     t.integer  "home_team_stats"
     t.integer  "away_team_stats"
     t.string   "desc"
@@ -113,6 +114,11 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
     t.boolean  "finished",        :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "play_futsal_stats", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "play_futsal_team_stats", :force => true do |t|

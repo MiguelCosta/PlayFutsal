@@ -76,6 +76,7 @@ module PlayFutsal
     protected
 
       #### Filters
+
       def group_by_id
         @group = Group.find params[:id]
       end

@@ -3,14 +3,14 @@ module PlayFutsal
 
     #### Relations ####
 
-    belongs_to :home_team, :class_name => 'PlayFutsal::Team'
-    belongs_to :away_team, :class_name => 'PlayFutsal::Team'
     belongs_to :group
 
     has_many :events
     has_many :athlete_stats
+
     has_one :home_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
     has_one :away_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
+    has_one :home_team, :through
 
 
     #### Accessors ####
