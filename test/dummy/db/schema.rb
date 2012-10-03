@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930181420) do
+ActiveRecord::Schema.define(:version => 20120924152624) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -98,6 +98,24 @@ ActiveRecord::Schema.define(:version => 20120930181420) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "play_futsal_group_stats", :force => true do |t|
+    t.integer "team_id",                           :null => false
+    t.integer "group_id",                          :null => false
+    t.integer "matches_played",     :default => 0
+    t.integer "wins_home",          :default => 0
+    t.integer "wins_away",          :default => 0
+    t.integer "draws_home",         :default => 0
+    t.integer "draws_away",         :default => 0
+    t.integer "losses_home",        :default => 0
+    t.integer "losses_away",        :default => 0
+    t.integer "goals_for_home",     :default => 0
+    t.integer "goals_for_away",     :default => 0
+    t.integer "goals_against_home", :default => 0
+    t.integer "goals_against_away", :default => 0
+    t.integer "points",             :default => 0
+    t.integer "position",           :default => 0
+  end
+
   create_table "play_futsal_groups", :force => true do |t|
     t.string "name"
   end
@@ -116,11 +134,6 @@ ActiveRecord::Schema.define(:version => 20120930181420) do
     t.datetime "updated_at",                         :null => false
   end
 
-  create_table "play_futsal_stats", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "play_futsal_team_stats", :force => true do |t|
     t.integer "match_id"
     t.integer "team_id"
@@ -129,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20120930181420) do
   end
 
   create_table "play_futsal_teams", :force => true do |t|
-    t.integer  "group_id"
     t.string   "name",                      :null => false
     t.integer  "goals",      :default => 0
     t.integer  "fouls",      :default => 0

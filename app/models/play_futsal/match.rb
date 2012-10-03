@@ -10,7 +10,8 @@ module PlayFutsal
 
     has_one :home_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
     has_one :away_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
-    has_one :home_team, :through
+    has_one :home_team, :through => :home_team_stats, :source => :team
+    has_one :away_team, :through => :away_team_stats, :source => :team
 
 
     #### Accessors ####
@@ -99,6 +100,5 @@ module PlayFutsal
       end
     end
 
-    
   end
 end

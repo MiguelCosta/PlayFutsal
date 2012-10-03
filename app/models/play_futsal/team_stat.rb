@@ -9,7 +9,8 @@ module PlayFutsal
 
     #### Accessors ####
 
-    attr_accessible :fouls,
+    attr_accessible :team_id,
+                    :fouls,
                     :goals
 
   end
