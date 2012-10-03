@@ -66,7 +66,7 @@ module PlayFutsal
 
                 #Away Team
                 self.away_team.athletes.each do |athlete|
-                self.athlete_stats.create :athlete => athlete
+                    self.athlete_stats.create :athlete => athlete
                 end
                 self.create_away_team_stats :team => away_team
             end
@@ -74,7 +74,7 @@ module PlayFutsal
     end
 
     # callback for commit a stats record
-    def end
+    def finish
         if !finished
             self.finished = true
 

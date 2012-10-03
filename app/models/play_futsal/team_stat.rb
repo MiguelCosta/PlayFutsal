@@ -11,7 +11,8 @@ module PlayFutsal
 
     attr_accessible :team_id,
                     :fouls,
-                    :goals
+                    :goals,
+                    :team
 
   end
 end

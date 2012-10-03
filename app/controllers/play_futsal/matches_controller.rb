@@ -69,7 +69,7 @@ module PlayFutsal
     end
 
     # finish the game
-    def end
+    def finish
       @match.end
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match finished"
