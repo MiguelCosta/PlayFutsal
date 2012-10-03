@@ -5,7 +5,7 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update, :begin]
+    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
 
 
@@ -18,14 +18,13 @@ module PlayFutsal
 
     def show
       @events = Event.find_all_by_match_id params[:id], :order => 'minute'
-      @athletes = @match.home_team.athletes + @match.away_team.athletes
 
       @event  = Event.new
     end
 
 
     def new
-      @match = Match.new
+      @match = Match.new   
     end
 
 
@@ -35,7 +34,7 @@ module PlayFutsal
 
     def create
       @match = Match.new params[:match]
-
+raise
       if @match.save
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
@@ -82,6 +81,8 @@ module PlayFutsal
 
       def match_by_id
         @match = Match.find params[:id]
+        # @match.home_team = Team.find(@match.home_team_id)
+        # @match.away_team = Team.find(@match.away_team_id)
       end
 
       def load_all_teams

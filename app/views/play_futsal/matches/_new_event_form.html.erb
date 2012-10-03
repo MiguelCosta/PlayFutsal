@@ -12,11 +12,11 @@
 
     <td>
       <%#= f.label :athlete %>
-      <%= f.collection_select :athlete_id, @athletes, :id, :name %>
+      <%= f.collection_select :athlete_id, @athletes, :id, :name_with_team %>
     </td>
 
     <td>
       <%= f.submit 'Add' %>
     </td>
-  <% end %>
+  <% end if @event && @match %>
 </tr>

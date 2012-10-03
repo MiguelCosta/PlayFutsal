@@ -44,10 +44,15 @@ module PlayFutsal
     scope :finished,    lambda { where :finished => true  }
 
 
+    #### Filters ####
+
+
+
+
     #### Validators ####
 
     validate :teams_cant_be_equal
-    validate :must_start_before_finish
+    #validate :must_start_before_finish
     validates :desc, :presence => true
 
     #### Callbacks ####
@@ -62,13 +67,13 @@ module PlayFutsal
                 self.home_team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
-                self.create_home_team_stats :team => home_team
+                self.create_home_team_stats team: home_team
 
                 #Away Team
                 self.away_team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
-                self.create_away_team_stats :team => away_team
+                self.create_away_team_stats team: away_team
             end
         end
     end
@@ -83,13 +88,20 @@ module PlayFutsal
     end
 
 
+    def athletes
+        athletes = []
+        athletes << self.home_team.athletes if self.home_team
+        athletes << self.away_team.athletes if self.away_team
+        athletes.flatten
+    end
+
 
     #### Private Methods ####
     private
 
     # guarantees that the two teams are not the same
     def teams_cant_be_equal
-      if home_team == away_team
+      if home_team_id == away_team_id
         errors.add :base, "teams can't be equal"
       end
     end

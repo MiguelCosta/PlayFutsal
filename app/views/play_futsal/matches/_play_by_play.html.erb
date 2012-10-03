@@ -11,15 +11,16 @@
   </thead>
 
   <tbody>
-    <% @events.each do |e| %>
+    <% @events.each do |event| %>
       <tr>
-        <td><%= e.minute %></td>
-        <td><%= e.event_type.name %></td>
-        <td><%= e.athlete.name %></td>
-        <td><%= link_to 'Delete', match_event_path(@match, e), :method => :delete, :class => :btn %></td>
+        <td><%= event.minute %></td>
+        <td><%= event.event_type.name %></td>
+        <td><%= event.athlete.name_with_team %></td>
+        <td><%= link_to 'Delete', match_event_path(@match, event), :method => :delete, :class => :btn %></td>
       </tr>
-    <% end %>
+    <% end if @events %>
 
+    
     <%= render 'new_event_form' %>
   </tbody>
 </table>

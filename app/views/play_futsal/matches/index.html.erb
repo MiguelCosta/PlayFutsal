@@ -1,7 +1,8 @@
 <%= content_for :title do 'Matches' end %>
 
 <div class="hero-unit">
+<%= link_to 'New Match', new_match_path, :class => 'btn pull-right' %>
+
 <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matches } %>
 
-  <%= link_to 'New Match', new_match_path, :class => :btn %>
 </div>
