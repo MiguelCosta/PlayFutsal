@@ -8,10 +8,16 @@ module PlayFutsal
     has_many :events
     has_many :athlete_stats
 
-    has_one :home_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
-    has_one :away_team_stats, :class_name =>'PlayFutsal::TeamStat', :foreign_key => :team_id
-    has_one :home_team, :through => :home_team_stats, :source => :team
-    has_one :away_team, :through => :away_team_stats, :source => :team
+    has_many :participations, :class_name =>'PlayFutsal::Participation'
+    has_many :teams, :through => :participations
+
+    def home_team
+      participations.first.team
+    end
+
+    def away_team
+      participations.last.team
+    end
 
 
     #### Accessors ####
@@ -49,6 +55,7 @@ module PlayFutsal
     validate :teams_cant_be_equal
     validate :must_start_before_finish
     validates :desc, :presence => true
+
 
     #### Callbacks ####
 

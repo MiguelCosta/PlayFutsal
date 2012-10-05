@@ -5,8 +5,9 @@
  *
  *= require play_futsal/bootstrap
  *= require play_futsal/bootstrap-responsive
- *= require_self
+ *= require play_futsal/bs-docs-sidebar
  *= require_tree .
+ *= require_self
 */
 
 body {
@@ -16,4 +17,8 @@ body {
 
 .sidebar-nav {
   padding: 9px 0;
+}
+
+.right-align {
+  text-align: right;
 }

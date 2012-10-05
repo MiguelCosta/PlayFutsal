@@ -8,7 +8,7 @@ class CreatePlayFutsalStatistics < ActiveRecord::Migration
       t.integer :fouls, :default => 0
     end
 
-    create_table :play_futsal_team_stats do |t|
+    create_table :play_futsal_participations do |t|
       t.integer :match_id
       t.integer :team_id
 

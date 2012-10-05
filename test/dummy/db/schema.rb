@@ -121,20 +121,16 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
   end
 
   create_table "play_futsal_matches", :force => true do |t|
-    t.integer  "home_team_id"
-    t.integer  "away_team_id"
     t.integer  "group_id"
-    t.integer  "home_team_stats"
-    t.integer  "away_team_stats"
     t.string   "desc"
     t.datetime "datetime"
-    t.boolean  "started",         :default => false
-    t.boolean  "finished",        :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "started",    :default => false
+    t.boolean  "finished",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
-  create_table "play_futsal_team_stats", :force => true do |t|
+  create_table "play_futsal_participations", :force => true do |t|
     t.integer "match_id"
     t.integer "team_id"
     t.integer "goals",    :default => 0

@@ -1,20 +1,30 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Team</th>
-      <th>Games</th>
-      <th>Goals</th>
-      <th>Points</th>
+      <th></th>
+      <th title="Matches Played">M</th>
+      <th title="Wins">W</th>
+      <th title="Draws">D</th>
+      <th title="Losses">L</th>
+      <th title="Goals Scored">GS</th>
+      <th title="Goals Against">GA</th>
+      <th title="Goal Difference">GD</th>
+      <th title="Points">Pt</th>
     </tr>
   </thead>
 
   <tbody>
     <% group.teams.each do |team| %>
       <tr>
-        <td><%= link_to team.name, team_path(team) %></td>
-        <td><%= team.matches.in_group.finished.count %></td>
-        <td><%= team.goals %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
+        <td style="width:40%"><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.group_stat.matches_played %></td>
+        <td><%= team.group_stat.wins %></td>
+        <td><%= team.group_stat.draws %></td>
+        <td><%= team.group_stat.losses %></td>
+        <td><%= team.group_stat.goals_for %></td>
+        <td><%= team.group_stat.goals_against %></td>
+        <td><%= team.group_stat.goal_difference %></td>
+        <td><%= team.group_stat.points %></td>
       </tr>
     <% end %>
   </tbody>

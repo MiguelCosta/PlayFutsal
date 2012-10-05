@@ -32,7 +32,7 @@ FactoryGirl.define do
     name     { Faker::Company.name }
 
     factory :full_team do
-      athletes { FactoryGirl.create_list :athlete, 5 }
+      athletes { FactoryGirl.create_list :athlete, 1 }
     end
   end
 
@@ -51,7 +51,11 @@ FactoryGirl.define do
 
           result = []
           pairs.each do |pair|
-            result.push FactoryGirl.create :match, :home_team => pair[0], :away_team => pair[1]
+            puts "matching #{pair[0].name} with #{pair[1].name}"
+            match = FactoryGirl.build :match
+            match.participations << (PlayFutsal::Participation.create :team => pair[0])
+            match.participations << (PlayFutsal::Participation.create :team => pair[1])
+            result.push match
           end
           result
         }
@@ -62,7 +66,7 @@ FactoryGirl.define do
 
   #### Match
   factory :match, :class => 'PlayFutsal::Match' do
-    desc { Faker::Lorem.words(1)[0] }
+    sequence(:desc)
     datetime { 2.days.from_now..10.days.from_now }
   end
 

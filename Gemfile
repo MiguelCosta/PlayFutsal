@@ -27,4 +27,8 @@ group :development, :test do
   gem 'faker'
 end
 
+group :assets do
+  gem 'uglifier'
+end
+
 gem 'play_auth', :git => 'git@github.com:naps62/PlayAuth.git'
