@@ -9,14 +9,15 @@
       </h3>
   </div>
 
-<% if !@match.started %>
+<% if not @match.started? %>
   <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => :btn %>
 <% else %>
   <%= link_to 'End Game', finish_match_path(@match), :method => :put, :class => :btn %>
 <% end %>
 
+<% if @match.started? %>
   <%= render :partial => 'play_by_play' %>
-
+<% end %>
 
   <%= link_to 'Edit',     edit_match_path(@match), :class => :btn %>
   <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => :btn %>

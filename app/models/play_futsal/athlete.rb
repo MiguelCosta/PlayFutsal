@@ -38,5 +38,9 @@ module PlayFutsal
         self.user.name
     end 
 
+    def name_with_team
+        "#{self.user.name} (#{self.team.name})"
+    end
+
   end
 end
