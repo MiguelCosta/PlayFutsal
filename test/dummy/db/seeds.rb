@@ -6,4 +6,4 @@ require 'faker'
 
 puts 'Generating test data. This might take a while...'
 FactoryGirl.find_definitions
-FactoryGirl.create_list :full_group_with_matches, 1
+FactoryGirl.create_list :full_group_with_matches, 2

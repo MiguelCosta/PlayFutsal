@@ -32,7 +32,7 @@ FactoryGirl.define do
     name     { Faker::Company.name }
 
     factory :full_team do
-      athletes { FactoryGirl.create_list :athlete, 1 }
+      athletes { FactoryGirl.create_list :athlete, 2 }
     end
   end
 

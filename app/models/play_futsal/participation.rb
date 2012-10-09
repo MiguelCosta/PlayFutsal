@@ -15,5 +15,10 @@ module PlayFutsal
                     :goals,
                     :team
 
+
+    #### Validators ####
+
+    validate :team, :uniqueness => { :scope => :match }
+
   end
 end

@@ -56,8 +56,7 @@ module PlayFutsal
 
 
     #### Validators ####
-
-    validate :teams_cant_be_equal
+    
     #validate :must_start_before_finish
     validates :desc, :presence => true
 
@@ -105,13 +104,6 @@ module PlayFutsal
 
     #### Private Methods ####
     private
-
-    # guarantees that the two teams are not the same
-    def teams_cant_be_equal
-      if home_team_id == away_team_id
-        errors.add :base, "teams can't be equal"
-      end
-    end
 
     def must_start_before_finish
       if finished == true && started == false
