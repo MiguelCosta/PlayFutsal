@@ -12,20 +12,19 @@ module PlayFutsal
     has_many :teams, :through => :participations
 
     def home_team
-      participations.first.team
+      self.participations.first.team
     end
 
     def away_team
-      participations.last.team
+      self.participations.last.team
     end
-
 
     #### Accessors ####
     
     attr_accessible :home_team,
                     :away_team,
-                    :home_team_id,
-                    :away_team_id,
+                    #:home_team_id,
+                    #:away_team_id,
                     :events,
                     :athlete_stats,
                     :home_team_stats,
@@ -73,18 +72,17 @@ module PlayFutsal
                 self.home_team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
-                self.create_home_team_stats team: home_team
 
                 #Away Team
                 self.away_team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
-                self.create_away_team_stats team: away_team
+                
             end
         end
     end
 
-    # callback for commit a stats record
+    # callback to commit a stats record
     def finish
         if !finished
             self.finished = true

@@ -1,4 +1,4 @@
-<%= form_for @athlete do |f| %>
+<%= form_for @athlete do |form| %>
   <% if @athlete.errors.any? %>
     <div id='error_explanation'>
       <h2><%= pluralize(@athlete.errors.count, 'error') %> prohibited this post from being saved:</h2>
@@ -12,22 +12,22 @@
   <% end %>
 
   <div class='field'>
-    <%= f.label :name %>
-    <%= f.collection_select :user_id, PlayAuth::User.find([@athlete.user_id]), :id, :name, :selected => @athlete.user %>
+    <%= form.label :name %>
+    <%= form.collection_select :user_id, PlayAuth::User.find([@athlete.user_id]), :id, :name, :selected => @athlete.user %>
   </div>
 
   <div class='field'>
-    <%= f.label :team %>
-    <%= f.collection_select :team_id, PlayFutsal::Team.all, :id, :name, :selected => @athlete.team %>
+    <%= form.label :team %>
+    <%= form.collection_select :team_id, PlayFutsal::Team.all, :id, :name, :selected => @athlete.team %>
   </div>
 
   <div class='field'>
-    <%= f.label :number %>
-    <%= f.text_field :number %>
+    <%= form.label :number %>
+    <%= form.text_field :number %>
   </div>
 
   <div class='form-actions'>
-    <%= f.submit 'Save' %>
+    <%= form.submit 'Save' %>
     <%= link_to  'Back', :back %>
   </div>
 

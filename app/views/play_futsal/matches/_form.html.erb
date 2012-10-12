@@ -22,12 +22,12 @@
 
   <div class='field'>
     <%= form.label :home_team %>
-    <%= collection_select :match, :home_team_id, @teams, :id, :name %>
+    <%= collection_select :home_team, :id, @teams, :id, :name %>
   </div>
 
   <div class='field'>
     <%= form.label :away_team %>
-    <%= collection_select :match, :away_team_id, @teams, :id, :name %>
+    <%= collection_select :away_team, :id, @teams, :id, :name %>
   </div>
 
   <div class='form-actions'>

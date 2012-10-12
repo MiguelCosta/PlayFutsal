@@ -14,7 +14,7 @@
       <tr>
         <td><%= athlete.id %></td>
         <td><%= link_to athlete.name, athlete_path(athlete) %></td>
-        <td><%= link_to athlete.team.name, team_path(athlete.team) %></td>
+        <td><%= link_to athlete.team.name, team_path(athlete.team) if athlete.team %></td>
         <td><%= athlete.goals %></td>
         <td><%= athlete.fouls %></td>
         <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>

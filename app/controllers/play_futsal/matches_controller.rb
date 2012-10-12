@@ -34,7 +34,7 @@ module PlayFutsal
 
     def create
       @match = Match.new params[:match]
-raise
+#raise
       if @match.save
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
@@ -44,7 +44,14 @@ raise
 
 
     def update
-      if @match.update_attributes params[:match]
+
+      @home_team_id = params[:home_team][:id]
+      @away_team_id = params[:away_team][:id]
+      debugger
+      if (@match.update_attributes(params[:match])  &&
+          @match.participations.first.update_attribute(:team_id, @home_team_id) &&
+          @match.participations.last.update_attribute(:team_id, @away_team_id))
+
         redirect_to match_path(@match), :notice => "Match successfully updated"
       else
         render :edit
@@ -81,8 +88,6 @@ raise
 
       def match_by_id
         @match = Match.find params[:id]
-        # @match.home_team = Team.find(@match.home_team_id)
-        # @match.away_team = Team.find(@match.away_team_id)
       end
 
       def load_all_teams

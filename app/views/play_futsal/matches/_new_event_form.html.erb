@@ -12,7 +12,7 @@
 
     <td>
       <%#= f.label :athlete %>
-      <%= f.collection_select :athlete_id, @athletes, :id, :name_with_team %>
+      <%= f.collection_select :athlete_id, @match.athletes, :id, :name_with_team %>
     </td>
 
     <td>
