@@ -12,9 +12,20 @@
     <tr>
       <% team.athletes.each do |athlete| %>
         <tr>
-          <td><%= athlete.name %></td>
-          <td><%= athlete.goals %></td>
-          <td><%= athlete.fouls %></td>
+          <td><%= link_to athlete.name, athlete_path(athlete) %></td>
+          <% @ath_stat = PlayFutsal::AthleteStat.find_by_match_id_and_athlete_id(@match.id, athlete.id) %>
+          <% if @ath_stat %>
+          <td>
+            <%= @ath_stat.goals %>
+            <%= link_to '', athlete_add_goal_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-up' %>
+            <%= link_to '', athlete_remove_goal_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-down' if @ath_stat.goals > 0 %>
+          </td>
+          <td>
+            <%= @ath_stat.fouls %>
+            <%= link_to '', athlete_add_foul_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-up' %>
+            <%= link_to '', athlete_remove_foul_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-down' if @ath_stat.fouls > 0 %>
+          </td>
+          <% end %>
         </tr>
       <% end %>
     </tr>

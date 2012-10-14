@@ -5,8 +5,9 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish]
+    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, :athlete_add_goal, :athlete_remove_goal]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
+    before_filter :load_athlete_stat, :only =>[:athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
 
 
     #### Actions ####
@@ -34,7 +35,6 @@ module PlayFutsal
 
     def create
       @match = Match.new params[:match]
-#raise
       if @match.save
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
@@ -84,6 +84,45 @@ module PlayFutsal
       end
     end
 
+
+    ################ 
+    #        Athlete Stats        #
+    ################
+    # athlete add goal
+    def athlete_add_goal
+      if @athlete_stat.update_attribute(:goals, @athlete_stat.goals+1)
+        redirect_to match_path(@match), :notice => "Goal added"
+      else
+        render :show
+      end
+    end
+    def athlete_remove_goal
+      if @athlete_stat.goals > 0 && @athlete_stat.update_attribute(:goals, @athlete_stat.goals-1)
+        redirect_to match_path(@match), :notice => "Goal removed"
+      else
+        render :show
+      end
+    end
+
+    def athlete_add_foul
+      if @athlete_stat.update_attribute(:fouls, @athlete_stat.fouls+1)
+        redirect_to match_path(@match), :notice => "Foul added"
+      else
+        render :show
+      end
+    end
+
+    def athlete_remove_foul
+      if @athlete_stat.fouls > 0 && @athlete_stat.update_attribute(:fouls, @athlete_stat.fouls-1)
+        redirect_to match_path(@match), :notice => "Foul removed"
+      else
+        render :show
+      end
+    end
+
+
+
+
     protected
 
       def match_by_id
@@ -92,6 +131,10 @@ module PlayFutsal
 
       def load_all_teams
         @teams = Team.all
+      end
+
+      def load_athlete_stat
+        @athlete_stat = AthleteStat.find_by_match_id_and_athlete_id(@match.id, params[:athlete])
       end
 
   end
