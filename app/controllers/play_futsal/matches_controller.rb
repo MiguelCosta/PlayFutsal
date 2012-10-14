@@ -5,7 +5,7 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, :athlete_add_goal, :athlete_remove_goal]
+    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, :athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
     before_filter :load_athlete_stat, :only =>[:athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
 
@@ -135,6 +135,7 @@ module PlayFutsal
 
       def load_athlete_stat
         @athlete_stat = AthleteStat.find_by_match_id_and_athlete_id(@match.id, params[:athlete])
+        logger.info '########################################DEBUG:' + @athlete_stat.inspect
       end
 
   end

@@ -10,17 +10,17 @@
   </div>
 
 <% if not @match.started? %>
-  <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => :btn %>
+  <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => 'btn btn-success btn-mini' %>
 <% else %>
-  <%= link_to 'End Game', finish_match_path(@match), :method => :put, :class => :btn %>
+  <%= link_to 'End Game', finish_match_path(@match), :method => :put, :class => 'btn btn-danger btn-mini pull-right' %>
 <% end %>
 
 <% if @match.started? %>
   <%= render :partial => 'play_by_play' %>
 <% end %>
 
-  <%= link_to 'Edit',     edit_match_path(@match), :class => :btn %>
-  <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => :btn %>
+  <%= link_to 'Edit',     edit_match_path(@match), :class => 'btn btn-mini' %>
+  <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => 'btn btn-mini' %>
 </div>
 
 <%= render :partial => 'stats' %>

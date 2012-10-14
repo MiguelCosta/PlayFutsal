@@ -1,6 +1,6 @@
 <h3>Play by Play</h3>
 
-<table class="table">
+<table class="table table-condensed table-hover">
   <thead>
     <tr>
       <th>Minute</th>
@@ -16,7 +16,7 @@
         <td><%= event.minute %></td>
         <td><%= event.event_type.name %></td>
         <td><%= event.athlete.name_with_team %></td>
-        <td><%= link_to 'Delete', match_event_path(@match, event), :method => :delete, :class => :btn %></td>
+        <td><%= link_to '', match_event_path(@match, event), :method => :delete, :class => 'icon-remove' %></td>
       </tr>
     <% end if @events %>
 
