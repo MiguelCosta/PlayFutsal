@@ -5,7 +5,7 @@ module PlayFutsal
 
     belongs_to :group
 
-    has_many :events
+    has_many :events, :dependent => :destroy
     has_many :athlete_stats
 
     has_many :participations, :class_name =>'PlayFutsal::Participation'

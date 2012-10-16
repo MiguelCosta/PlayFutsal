@@ -3,7 +3,7 @@ module PlayFutsal
 
     #### Relations ####
 
-    belongs_to :match, :dependent => :destroy
+    belongs_to :match
     belongs_to :event_type
     belongs_to :athlete
     belongs_to :other_athlete, :class_name => :athlete
