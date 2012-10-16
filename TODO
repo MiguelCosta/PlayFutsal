@@ -1,0 +1,21 @@
+VIEWS:
+
+- nao mostrar ids em lado nenhum. fica estupido
+
+Pagina Teams:
+   - mostrar stats decentes
+
+Pagina Matches:
+   - mostrar o resultado do jogo caso ele ja tenha começado
+
+Pagina Athletes:
+   - mostrar stats decentes
+
+
+
+FEATURES:
+- criar fases do torneio além da fase de grupos, e atribuir jogos a elas (precisa de ordenação manual)
+
+- terminar o Play by Play
+
+- passar o update dos stats de jogo para ajax
