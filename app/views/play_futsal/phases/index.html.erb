@@ -1,0 +1,10 @@
+<%= content_for :title do 'Phases' end %>
+
+<div class="hero-unit">
+  <% @phases.each do |phase| %>
+    <h3><%= phase %></h3>
+    <%= render :partial => 'phase', :locals => { :phase => phase } %>
+  <% end %>
+
+  <%= link_to 'New Phase', new_phase_path, :class => :btn %>
+</div>

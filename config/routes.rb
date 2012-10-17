@@ -25,6 +25,9 @@ PlayFutsal::Engine.routes.draw do
 	resources :teams
 
   resources :groups
+  resources :phases do
+    resources :matches
+  end
 
   root :to => 'teams#index'
 

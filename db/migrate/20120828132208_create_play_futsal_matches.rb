@@ -1,6 +1,7 @@
 class CreatePlayFutsalMatches < ActiveRecord::Migration
   def up
     create_table :play_futsal_matches do |t|
+      t.integer :phase_id
       t.integer :group_id
 
       t.string   :desc

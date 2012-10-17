@@ -18,7 +18,7 @@ module PlayFutsal
 
     #### Validators ####
 
-    validate :team, :uniqueness => { :scope => :match }
+    validate :team, :uniqueness => { :scope => :match_id }
 
 
     #### Methods ####

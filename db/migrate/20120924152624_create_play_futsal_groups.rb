@@ -1,4 +1,4 @@
-class CreateGroups < ActiveRecord::Migration
+class CreatePlayFutsalGroups < ActiveRecord::Migration
   def up
     create_table :play_futsal_groups do |t|
       t.string :name

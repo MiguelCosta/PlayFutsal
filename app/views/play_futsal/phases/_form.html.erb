@@ -1,0 +1,10 @@
+<%= form_for @phase do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :order %>
+  <%= f.number_field :order %>
+
+  <%= f.submit "Save", :class => :btn %>
+  <%= link_to :back, :class => :btn %>
+<% end %>
