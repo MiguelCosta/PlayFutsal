@@ -12,6 +12,11 @@
   <% end %>
 
   <div class='field'>
+    <%= form.label :phase %>
+    <%= form.collection_select :phase_id, @phases, :id, :name, :include_blank => true, :selected => @phase %>
+  </div>
+
+  <div class='field'>
     <%= form.label :desc %>
     <%= form.text_field :desc %>
   </div>

@@ -1,0 +1,11 @@
+<h3><%#= link_to phase, phase_path(phase) %></h3>
+
+
+<%= link_to 'New Match for this phase', new_phase_match_path(phase), :class => 'btn pull-right' %>
+<%= link_to 'Edit', edit_phase_path(phase), :class => 'btn pull-right' %>
+
+
+<%= render :partial => 'play_futsal/matches/table', :locals => { :matches => phase.matches } %>
+
+
+<hr />

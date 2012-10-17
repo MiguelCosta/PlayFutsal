@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924152624) do
+ActiveRecord::Schema.define(:version => 20121016231228) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
   end
 
   create_table "play_futsal_matches", :force => true do |t|
+    t.integer  "phase_id"
     t.integer  "group_id"
     t.string   "desc"
     t.datetime "datetime"
@@ -135,6 +136,13 @@ ActiveRecord::Schema.define(:version => 20120924152624) do
     t.integer "team_id"
     t.integer "goals",    :default => 0
     t.integer "fouls",    :default => 0
+  end
+
+  create_table "play_futsal_phases", :force => true do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "play_futsal_teams", :force => true do |t|

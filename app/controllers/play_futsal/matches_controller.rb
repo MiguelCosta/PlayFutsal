@@ -19,25 +19,31 @@ module PlayFutsal
 
     def show
       @events = Event.find_all_by_match_id params[:id], :order => 'minute'
-
       @event  = Event.new
     end
 
 
     def new
-      @match = Match.new   
+      @match = Match.new
+      @phases = Phase.all
+      @phase = params[:phase_id]
     end
 
 
     def edit
+      @match = Match.find params[:id]
+      @phases = Phase.all
     end
 
 
     def create
       @match = Match.new params[:match]
+      @match.add_participations(params[:home_team][:id], params[:away_team][:id])
+
       if @match.save
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
+        @phases = Phase.all
         render :new
       end
     end
@@ -47,7 +53,6 @@ module PlayFutsal
 
       @home_team_id = params[:home_team][:id]
       @away_team_id = params[:away_team][:id]
-      debugger
       if (@match.update_attributes(params[:match])  &&
           @match.participations.first.update_attribute(:team_id, @home_team_id) &&
           @match.participations.last.update_attribute(:team_id, @away_team_id))

@@ -3,6 +3,7 @@ module PlayFutsal
 
     #### Relations ####
 
+    belongs_to :phase
     belongs_to :group
 
     has_many :events, :dependent => :destroy
@@ -19,13 +20,13 @@ module PlayFutsal
       self.participations.last.team
     end
 
+
     #### Accessors ####
     
-    attr_accessible :home_team,
-                    :away_team,
-                    #:home_team_id,
-                    #:away_team_id,
+    attr_accessible :phase_id,
                     :events,
+                    :participations,
+                    :teams,
                     :athlete_stats,
                     :home_team_stats,
                     :away_team_stats,
@@ -33,6 +34,21 @@ module PlayFutsal
                     :finished,
                     :desc,
                     :datetime
+
+
+    #### Validators ####
+
+    validates :desc, :presence => true
+    validate :has_two_participations
+    validate :participants_are_different
+
+    def has_two_participations
+      errors.add(:participations, "Two teams are required") if self.participations.count == 2
+    end
+
+    def participants_are_different
+      errors.add(:participations, "Teams can't be the same") if home_team == away_team
+    end
 
 
 
@@ -48,19 +64,6 @@ module PlayFutsal
     scope :started,     lambda { where :started  => true  }
     scope :finished,    lambda { where :finished => true  }
 
-
-    #### Filters ####
-
-
-
-
-    #### Validators ####
-    
-    #validate :must_start_before_finish
-    validates :desc, :presence => true
-
-
-    #### Callbacks ####
 
     # callback for creating a stats record
     # for each player and team associated with this match
@@ -99,15 +102,19 @@ module PlayFutsal
         athletes.flatten
     end
 
+    def add_participations(home_id, away_id)
+      self.participations.build [{:team_id => home_id}, {:team_id => away_id}]
+    end
+
 
     #### Private Methods ####
-    private
+    protected
 
-    def must_start_before_finish
-      if finished == true && started == false
-        errors.add :started, "Match has to start before it can finish"
+      def must_start_before_finish
+        if finished == true && started == false
+          errors.add :started, "Match has to start before it can finish"
+        end
       end
-    end
 
   end
 end
