@@ -42,5 +42,9 @@ module PlayFutsal
         "#{self.user.name} (#{self.team.name})"
     end
 
+    def increment_stat(stat, val)
+        self.update_attribute(stat, val + self.send(stat))
+    end
+
   end
 end

@@ -1,5 +1,29 @@
 <h3><%= team.name %></h3>
 <table class='table table-condensed table-hover'>
+  <tr>
+    <th></th>
+    <th>Goals</th>
+    <th>Fouls</th>
+  </tr>
+  <tr>
+    <td>Team</td>
+    <td>
+      <% #debugger %>
+      <%= participation.goals %>
+      <%= link_to '', participation_add_goal_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-up' %>
+      <%= link_to '', participation_remove_goal_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-down' if participation.goals > 0 %>
+    </td>
+    <td>
+      <%= participation.fouls %>
+      <%= link_to '', participation_add_foul_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-up' %>
+      <%= link_to '', participation_remove_foul_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-down' if participation.fouls > 0 %>
+    </td>
+  </tr>
+
+</table>
+
+
+<table class='table table-condensed table-hover'>
   <thead>
     <tr>
       <th>Player</th>

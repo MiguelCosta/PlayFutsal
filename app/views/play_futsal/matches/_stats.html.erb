@@ -1,9 +1,10 @@
 <div class="row">
   <div class="span4">
-    <%= render :partial => 'team_stats', :locals => { :team => @match.home_team, :match => @match } %>
+    <% #debugger %>
+    <%= render :partial => 'team_stats', :locals => { :team => @match.home_team, :match => @match, :participation => @match.participations.first } %>
   </div>
 
   <div class="span4">
-    <%= render :partial => 'team_stats', :locals => { :team => @match.away_team, :match => @match } %>
+    <%= render :partial => 'team_stats', :locals => { :team => @match.away_team, :match => @match, :participation => @match.participations.last } %>
   </div>
 </div>

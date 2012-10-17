@@ -84,10 +84,19 @@ module PlayFutsal
 
     # callback to commit a stats record
     def finish
+        debugger
         if !finished
             self.finished = true
+            ActiveRecord::Base.transaction do
+                self.athlete_stats.each do |athlete_stat|
+                    athlete_stat.athlete.increment_stat(:goals, athlete_stat.goals)
+                    athlete_stat.athlete.increment_stat(:fouls, athlete_stat.fouls)
+                    athlete_stat.athlete.save
+                end
 
-            # não está terminado este método
+                self.participations.first.increment_all_stat
+                self.participations.last.increment_all_stat
+            end
         end
     end
 
