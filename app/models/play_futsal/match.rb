@@ -108,6 +108,10 @@ module PlayFutsal
         athletes.flatten
     end
 
+    def desc_with_goals
+        "#{self.desc} (#{self.goals})"
+    end
+
 
     #### Private Methods ####
     private
