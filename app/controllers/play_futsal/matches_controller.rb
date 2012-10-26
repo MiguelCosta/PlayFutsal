@@ -5,9 +5,12 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, :athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
+    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, 
+                                                            :athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul,
+                                                            :participation_add_goal, :participation_remove_goal, :participation_add_foul, :participation_remove_foul]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
     before_filter :load_athlete_stat, :only =>[:athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
+    before_filter :load_participation, :only =>[:participation_add_goal, :participation_remove_goal, :participation_add_foul, :participation_remove_foul]
 
 
     #### Actions ####
@@ -81,7 +84,7 @@ module PlayFutsal
 
     # finish the game
     def finish
-      @match.end
+      @match.finish
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match finished"
       else
@@ -125,7 +128,38 @@ module PlayFutsal
       end
     end
 
+    ################ 
+    #    Participation Stats    #
+    ################
+    def participation_add_goal
+      if @participation.update_attribute(:goals, @participation.goals+1)
+        redirect_to match_path(@match), :notice => "Goal added"
+      else
+        render :show
+      end
+    end
+    def participation_remove_goal
+      if @participation.goals > 0 && @participation.update_attribute(:goals, @participation.goals-1)
+        redirect_to match_path(@match), :notice => "Goal added"
+      else
+        render :show
+      end
+    end
 
+    def participation_add_foul
+      if @participation.update_attribute(:fouls, @participation.fouls+1)
+        redirect_to match_path(@match), :notice => "Foul added"
+      else
+        render :show
+      end
+    end
+    def participation_remove_foul
+      if @participation.fouls > 0 && @participation.update_attribute(:fouls, @participation.fouls-1)
+        redirect_to match_path(@match), :notice => "Foul removed"
+      else
+        render :show
+      end
+    end
 
 
     protected
@@ -140,7 +174,10 @@ module PlayFutsal
 
       def load_athlete_stat
         @athlete_stat = AthleteStat.find_by_match_id_and_athlete_id(@match.id, params[:athlete])
-        logger.info '########################################DEBUG:' + @athlete_stat.inspect
+      end
+
+      def load_participation
+        @participation = Participation.find_by_id(params[:participation])
       end
 
   end

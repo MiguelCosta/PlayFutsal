@@ -20,5 +20,11 @@ module PlayFutsal
 
     validate :team, :uniqueness => { :scope => :match_id }
 
+
+    #### Methods ####
+    def increment_all_stat
+        self.team.update_attributes(:goals => self.team.goals + self.goals, :fouls => self.team.fouls + self.fouls)
+    end
+
   end
 end

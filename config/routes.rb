@@ -9,13 +9,17 @@ PlayFutsal::Engine.routes.draw do
   resources :matches do
     resources :events 
     member do
-      put 'begin'
-      put 'finish'
-      put 'athlete_add_goal'
-      put 'athlete_remove_goal'
-      put 'athlete_add_foul'
-      put 'athlete_remove_foul'
-    end
+        put 'begin'
+        put 'finish'
+        put 'athlete_add_goal'
+        put 'athlete_remove_goal'
+        put 'athlete_add_foul'
+        put 'athlete_remove_foul'
+        put 'participation_add_goal'
+        put 'participation_remove_goal'
+        put 'participation_add_foul'
+        put 'participation_remove_foul'
+      end
   end
 
   resources :teams
