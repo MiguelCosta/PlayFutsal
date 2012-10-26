@@ -11,11 +11,5 @@ module PlayFutsal
     attr_accessible  :name,
                      :order
 
-
-    #### Methods ####
-
-    def to_s
-      name
-    end
   end
 end

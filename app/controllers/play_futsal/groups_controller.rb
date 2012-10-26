@@ -20,7 +20,7 @@ module PlayFutsal
 
     def new
       @group = Group.new
-      @teams = Team.find :all
+      @teams = Team.not_in_group
     end
 
 

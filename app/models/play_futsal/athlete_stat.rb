@@ -3,8 +3,8 @@ module PlayFutsal
 
     #### Relations ####
 
-    belongs_to :match, :dependent => :destroy
-    belongs_to :athlete, :dependent => :destroy
+    belongs_to :match
+    belongs_to :athlete
 
 
     #### Accessors ####

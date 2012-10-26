@@ -65,6 +65,8 @@ module PlayFutsal
     scope :finished,    lambda { where :finished => true  }
 
 
+    #### Methods ####
+    
     # callback for creating a stats record
     # for each player and team associated with this match
     def begin

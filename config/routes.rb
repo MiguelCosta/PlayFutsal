@@ -17,8 +17,8 @@ PlayFutsal::Engine.routes.draw do
       put 'athlete_remove_foul'
     end
   end
-  
-	resources :teams
+
+  resources :teams
 
   resources :groups
   resources :phases do
