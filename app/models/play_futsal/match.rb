@@ -43,7 +43,7 @@ module PlayFutsal
     validate :participants_are_different
 
     def has_two_participations
-      errors.add(:participations, "Two teams are required") if self.participations.count != 2
+      errors.add(:participations, "Two teams are required") if self.participations.size != 2
     end
 
     def participants_are_different

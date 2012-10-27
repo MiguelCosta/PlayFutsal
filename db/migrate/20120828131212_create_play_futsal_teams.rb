@@ -3,8 +3,9 @@ class CreatePlayFutsalTeams < ActiveRecord::Migration
     create_table :play_futsal_teams do |t|
       t.string :name, :null => false
 
-      t.integer :goals, :default => 0
-      t.integer :fouls, :default => 0
+      t.integer :goals,        :default => 0
+      t.integer :yellow_cards, :default => 0
+      t.integer :red_cards,    :default => 0
 
       t.timestamps
     end

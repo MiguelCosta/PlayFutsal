@@ -5,7 +5,8 @@
       <th>Name</th>
       <th>Team</th>
       <th>Goals</th>
-      <th>Fouls</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
     </tr>
   </thead>
 
@@ -16,7 +17,8 @@
         <td><%= link_to athlete.name, athlete_path(athlete) %></td>
         <td><%= link_to athlete.team.name, team_path(athlete.team) if athlete.team %></td>
         <td><%= athlete.goals %></td>
-        <td><%= athlete.fouls %></td>
+        <td><%= athlete.yellow_cards %></td>
+        <td><%= athlete.red_cards %></td>
         <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
       </tr>
     <% end %>
