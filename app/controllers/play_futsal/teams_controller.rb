@@ -15,7 +15,7 @@ module PlayFutsal
 
     def new
       @team     = Team.new
-      @athletes = Athlete.find :all
+      @athletes = Athlete.without_team
     end
 
 
@@ -28,7 +28,7 @@ module PlayFutsal
       end
 
       # only select athletes without team
-      @athletes = Athlete.find_all_by_team_id nil
+      @athletes = Athlete.without_team
     end
 
 

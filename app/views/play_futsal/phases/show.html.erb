@@ -1,5 +1,5 @@
 <%= content_for :title do @phase.name end %>
 
 <div class="hero-unit">
-  <%= render :partial => 'phase', :locals => { :phase => @phase } %>
+  <%= render 'phase', :phase => @phase %>
 </div>

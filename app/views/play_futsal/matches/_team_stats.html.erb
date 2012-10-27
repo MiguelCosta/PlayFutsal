@@ -1,25 +1,22 @@
 <h3><%= team.name %></h3>
 <table class='table table-condensed table-hover'>
-  <tr>
-    <th></th>
-    <th>Goals</th>
-    <th>Fouls</th>
-  </tr>
-  <tr>
-    <td>Team</td>
-    <td>
-      <% #debugger %>
-      <%= participation.goals %>
-      <%= link_to '', participation_add_goal_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-up' %>
-      <%= link_to '', participation_remove_goal_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-down' if participation.goals > 0 %>
-    </td>
-    <td>
-      <%= participation.fouls %>
-      <%= link_to '', participation_add_foul_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-up' %>
-      <%= link_to '', participation_remove_foul_match_path(:participation => participation.id), :method => :put, :class => 'icon-arrow-down' if participation.fouls > 0 %>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Goals</th>
+      <th>Yellow</th>
+      <th>Red</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <tr>
+      <th></th>
+      <th><%= participation.goals %></th>
+      <th><%= participation.yellow_cards %></th>
+      <th><%= participation.red_cards %></th>
+    </tr>
+  </tbody>
 </table>
 
 
@@ -28,30 +25,23 @@
     <tr>
       <th>Player</th>
       <th>Goals</th>
-      <th>Fouls</th>
+      <th>Yellow</th>
+      <th>Red</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <% team.athletes.each do |athlete| %>
-        <tr>
-          <td><%= link_to athlete.name, athlete_path(athlete) %></td>
-          <% @ath_stat = PlayFutsal::AthleteStat.find_by_match_id_and_athlete_id(@match.id, athlete.id) %>
-          <% if @ath_stat %>
-          <td>
-            <%= @ath_stat.goals %>
-            <%= link_to '', athlete_add_goal_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-up' %>
-            <%= link_to '', athlete_remove_goal_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-down' if @ath_stat.goals > 0 %>
-          </td>
-          <td>
-            <%= @ath_stat.fouls %>
-            <%= link_to '', athlete_add_foul_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-up' %>
-            <%= link_to '', athlete_remove_foul_match_path(:athlete => athlete.id), :method => :put, :class => 'icon-arrow-down' if @ath_stat.fouls > 0 %>
-          </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tr>
+    <% athletes_stats.each do |stats| %>
+      <tr>
+        <td><%= link_to stats.athlete.name, athlete_path(stats.athlete) %></td>
+        <% if stats %>
+          <td><%= show_athlete_stat stats, :goals %></td>
+          <td><%= show_athlete_stat stats, :yellow_cards %></td>
+          <td><%= show_athlete_stat stats, :red_cards %></td>
+        <% end %>
+      </tr>
+    <% end %>
+
   </tbody>
+
 </table>

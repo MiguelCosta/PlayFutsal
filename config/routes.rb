@@ -7,7 +7,8 @@ PlayFutsal::Engine.routes.draw do
   end
 
   resources :matches do
-    resources :events 
+    resources :events
+
     member do
         put 'begin'
         put 'finish'
@@ -22,9 +23,19 @@ PlayFutsal::Engine.routes.draw do
       end
   end
 
+  resources :athlete_stats do
+    member do
+      match 'increment/:stat' => 'athlete_stats#increment', :as => :increment, :via => :put
+      match 'decrement/:stat' => 'athlete_stats#decrement', :as => :decrement, :via => :put
+    end
+  end
+
   resources :teams
 
-  resources :groups
+  resources :groups do
+    resources :matches
+  end
+  
   resources :phases do
     resources :matches
   end

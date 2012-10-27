@@ -67,8 +67,9 @@ ActiveRecord::Schema.define(:version => 20121016231228) do
   create_table "play_futsal_athlete_stats", :force => true do |t|
     t.integer "match_id"
     t.integer "athlete_id"
-    t.integer "goals",      :default => 0
-    t.integer "fouls",      :default => 0
+    t.integer "goals",        :default => 0
+    t.integer "yellow_cards", :default => 0
+    t.integer "red_cards",    :default => 0
   end
 
   create_table "play_futsal_athletes", :force => true do |t|

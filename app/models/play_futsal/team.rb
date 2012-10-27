@@ -42,5 +42,9 @@ module PlayFutsal
       Match.by_team(self)
     end
 
+    def to_s
+      name
+    end
+
   end
 end

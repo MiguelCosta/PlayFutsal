@@ -5,8 +5,7 @@ module PlayFutsal
 
     #### Filters ####
 
-    before_filter :match_by_id, :only => [:show, :edit, :update, :begin, :finish, 
-                                                            :athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul,
+    before_filter :match_by_id, :only => [:athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul,
                                                             :participation_add_goal, :participation_remove_goal, :participation_add_foul, :participation_remove_foul]
     before_filter :load_all_teams, :only => [:new, :edit, :create]
     before_filter :load_athlete_stat, :only =>[:athlete_add_goal, :athlete_remove_goal, :athlete_add_foul, :athlete_remove_foul]
@@ -21,6 +20,8 @@ module PlayFutsal
 
 
     def show
+      @match = Match.find params[:id]
+
       @events = Event.find_all_by_match_id params[:id], :order => 'minute'
       @event  = Event.new
     end
@@ -28,6 +29,8 @@ module PlayFutsal
 
     def new
       @match = Match.new
+      @groups = Group.all
+      @group = params[:group_id]
       @phases = Phase.all
       @phase = params[:phase_id]
     end
@@ -35,6 +38,7 @@ module PlayFutsal
 
     def edit
       @match = Match.find params[:id]
+      @groups = Group.all
       @phases = Phase.all
     end
 
@@ -46,6 +50,7 @@ module PlayFutsal
       if @match.save
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
+        @groups = Group.all
         @phases = Phase.all
         render :new
       end
@@ -53,7 +58,7 @@ module PlayFutsal
 
 
     def update
-
+      @match = Match.find params[:id]
       @home_team_id = params[:home_team][:id]
       @away_team_id = params[:away_team][:id]
       if (@match.update_attributes(params[:match])  &&
@@ -74,6 +79,7 @@ module PlayFutsal
 
     # start the game
     def begin
+      @match = Match.find params[:id]
       @match.begin
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match started"
@@ -84,6 +90,7 @@ module PlayFutsal
 
     # finish the game
     def finish
+      @match = Match.find params[:id]
       @match.finish
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match finished"

@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <p>PS: Escolher apenas Phase ou Group, nunca os 2</p>
+
+  <div class='field'>
+    <%= form.label :group %>
+    <%= form.collection_select :group_id, @groups, :id, :name, :include_blank => true, :selected => @group %>
+  </div>
+
   <div class='field'>
     <%= form.label :phase %>
     <%= form.collection_select :phase_id, @phases, :id, :name, :include_blank => true, :selected => @phase %>

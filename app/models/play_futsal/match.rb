@@ -12,12 +12,12 @@ module PlayFutsal
     has_many :participations, :class_name =>'PlayFutsal::Participation'
     has_many :teams, :through => :participations
 
-    def home_team
-      self.participations.first.team
+    def home
+      self.participations.first
     end
 
-    def away_team
-      self.participations.last.team
+    def away
+      self.participations.last
     end
 
 
@@ -47,7 +47,7 @@ module PlayFutsal
     end
 
     def participants_are_different
-      errors.add(:participations, "Teams can't be the same") if home_team == away_team
+      errors.add(:participations, "Teams can't be the same") if home.team == away.team
     end
 
 
@@ -74,12 +74,12 @@ module PlayFutsal
             self.started = true
             ActiveRecord::Base.transaction do
                 #Home Team
-                self.home_team.athletes.each do |athlete|
+                self.home.team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
 
                 #Away Team
-                self.away_team.athletes.each do |athlete|
+                self.away.team.athletes.each do |athlete|
                     self.athlete_stats.create :athlete => athlete
                 end
                 
@@ -109,8 +109,8 @@ module PlayFutsal
 
     def athletes
         athletes = []
-        athletes << self.home_team.athletes if self.home_team
-        athletes << self.away_team.athletes if self.away_team
+        athletes << self.home.team.athletes if self.home.team
+        athletes << self.away.team.athletes if self.away.team
         athletes.flatten
     end
 
@@ -121,6 +121,15 @@ module PlayFutsal
     
     def add_participations(home_id, away_id)
       self.participations.build [{:team_id => home_id}, {:team_id => away_id}]
+    end
+
+
+    def home_athletes_stats
+      AthleteStat.by_match(self).by_team(self.home.team)
+    end
+
+    def away_athletes_stats
+      AthleteStat.by_match(self).by_team(self.away.team)
     end
 
 

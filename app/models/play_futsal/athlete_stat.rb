@@ -11,8 +11,15 @@ module PlayFutsal
 
     attr_accessible :match,
                     :athlete,
-                    :fouls,
-                    :goals
+                    :goals,
+                    :yellow_cards,
+                    :red_cards
+
+
+    #### Scopes ####
+
+    scope :by_match, lambda { |match| where :match_id => match.id }
+    scope :by_team,  lambda { |team|  joins(:athlete).where('play_futsal_athletes.team_id'  => team.id) }
 
   end
 end

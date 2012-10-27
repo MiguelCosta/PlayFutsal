@@ -33,6 +33,11 @@ module PlayFutsal
                     :athlete_stats
 
 
+    #### Scopes ####
+
+    scope :without_team, -> { where :team_id => nil }
+
+
     ##### Methods ####
     def name 
         self.user.name

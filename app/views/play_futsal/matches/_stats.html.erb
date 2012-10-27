@@ -1,10 +1,15 @@
 <div class="row">
   <div class="span4">
-    <% #debugger %>
-    <%= render :partial => 'team_stats', :locals => { :team => @match.home_team, :match => @match, :participation => @match.participations.first } %>
+    <%= render 'team_stats',  :team           => @match.home.team,
+                              :match          => @match,
+                              :participation  => @match.home,
+                              :athletes_stats => @match.home_athletes_stats %>
   </div>
 
   <div class="span4">
-    <%= render :partial => 'team_stats', :locals => { :team => @match.away_team, :match => @match, :participation => @match.participations.last } %>
+    <%= render 'team_stats',  :team           => @match.away.team,
+                              :match          => @match,
+                              :participation  => @match.away,
+                              :athletes_stats => @match.away_athletes_stats %>
   </div>
 </div>
