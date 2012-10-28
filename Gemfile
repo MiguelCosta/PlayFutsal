@@ -15,7 +15,7 @@ group :development do
   gem 'pry-rails'
 end
 
-group :development, :test do
+group :test do
   gem 'factory_girl'
   gem 'faker'
 end
