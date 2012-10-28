@@ -38,8 +38,9 @@ module PlayFutsal
 
 
     #### Methods ####
-    def matches
-      Match.by_team(self)
+
+    def add_to_stat(stat, val)
+      self.update_attribute(stat, val + self.send(stat))
     end
 
     def to_s

@@ -11,9 +11,10 @@ module PlayFutsal
     #### Accessors ####
 
     attr_accessible :team_id,
-                    :fouls,
+                    :team,
                     :goals,
-                    :team
+                    :yellow_cards,
+                    :red_cards
 
 
     #### Validators ####
@@ -22,8 +23,21 @@ module PlayFutsal
 
 
     #### Methods ####
-    def increment_all_stat
-        self.team.update_attributes(:goals => self.team.goals + self.goals, :fouls => self.team.fouls + self.fouls)
+    def increment(stat)
+      self.update_attribute(stat, self.send(stat)+1)
+    end
+
+
+    def decrement(stat)
+      self.update_attribute(stat, self.send(stat)-1)
+    end
+
+
+    def commit
+      [:goals, :yellow_cards, :red_cards].each do |stat|
+        value = self.send(stat)
+        self.team.add_to_stat(stat, value)
+      end
     end
 
   end
