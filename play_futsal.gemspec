@@ -7,8 +7,8 @@ require "play_futsal/version"
 Gem::Specification.new do |s|
   s.name        = "play_futsal"
   s.version     = PlayFutsal::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Miguel Palhas"]
+  s.email       = ["mpalhas@gmail.com"]
   s.homepage    = "naps62.github.com"
   s.summary     = "A Futsal Tournament Engine"
   s.description = "Manages a futsal tournament"
