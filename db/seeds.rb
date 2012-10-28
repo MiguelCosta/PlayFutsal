@@ -4,6 +4,6 @@ puts 'PlayFutsal: Creating roles'
   PlayFutsal::Role.create :name => role
 end
 
-['goal', 'foul'].each do |name|
+['Match Start', 'Match End', 'Goal', 'Yellow Card', 'Red Card'].each do |name|
   PlayFutsal::EventType.find_or_create_by_name(name)
 end

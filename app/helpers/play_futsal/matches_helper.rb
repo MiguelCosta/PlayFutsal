@@ -17,11 +17,11 @@ module PlayFutsal
 
 
     def show_athlete_stat(stats, stat_name)
-      [
+      raw([
         stats.send(stat_name),
         increment_stat_link(stats, stat_name),
         decrement_stat_link(stats, stat_name)
-      ].join
+      ].join)
     end
   end
 end
