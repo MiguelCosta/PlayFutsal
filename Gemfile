@@ -15,9 +15,15 @@ group :development do
   gem 'pry-rails'
 end
 
-group :test do
+group :development, :test do
   gem 'factory_girl'
   gem 'faker'
+end
+
+gem 'sqlite3', :group => [:development, :test]
+group :production do
+  gem 'thin'
+  gem 'pg'
 end
 
 group :assets do
