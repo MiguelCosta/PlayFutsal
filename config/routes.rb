@@ -1,5 +1,7 @@
 PlayFutsal::Engine.routes.draw do
 
+  mount PlayAuth::Engine => '/'
+
   resources :athletes do
     member do
       delete 'remove_from_team'

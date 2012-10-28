@@ -4,8 +4,6 @@ gemspec
 # jquery-rails is used by the dummy application
 gem 'jquery-rails'
 
-gem 'squeel'
-
 # To use debugger
 # gem 'debugger'
 group :development do

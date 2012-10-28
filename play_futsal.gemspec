@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = PlayFutsal::VERSION
   s.authors     = ["TODO: Your name"]
   s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of PlayFutsal."
-  s.description = "TODO: Description of PlayFutsal."
+  s.homepage    = "naps62.github.com"
+  s.summary     = "A Futsal Tournament Engine"
+  s.description = "Manages a futsal tournament"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
