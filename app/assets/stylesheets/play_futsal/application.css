@@ -11,14 +11,8 @@
 */
 
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 60px;
 }
 
-.sidebar-nav {
-  padding: 9px 0;
-}
-
-.right-align {
-  text-align: right;
+#logo {
 }

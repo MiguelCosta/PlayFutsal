@@ -1,9 +1,10 @@
 module PlayFutsal
   module ApplicationHelper
 
-    def sidebar_link(text, path)
-      link_to path do
-        raw('<i class="icon-chevron-right"></i>') + text
+    def navbar_item(text, path)
+      class_name = current_page?(path) ? 'active' : ''
+      content_tag :li, :class => class_name do
+        link_to text, path, :class => class_name
       end
     end
 

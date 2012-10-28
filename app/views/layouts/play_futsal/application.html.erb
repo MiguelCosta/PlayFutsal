@@ -12,13 +12,14 @@
     <%= yield(:head) %>
   </head>
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
-    <!--<header class="navbar navbar-fixed-top">
+    <header class="navbar navbar-fixed-top navbar-inverse">
       <nav class="navbar-inner">
         <div class="container">
-          <%#= render 'layouts/play_futsal/navigation' %>
+          <a class="brand" href="#">Uminho Cup 2012/2013</a>
+          <%= render 'layouts/play_futsal/navigation' %>
         </div>
       </nav>
-    </header>-->
+    </header>
 
     <div id="main" role="main">
       <div class="container">
@@ -29,7 +30,11 @@
         </div>
         
         <div class="row">
-          <%= render 'layouts/play_futsal/navigation' %>
+          <div class="span3">
+            <figure id="logo">
+              <img src="<%= image_path 'play_futsal/logo_uminho_cup.png' %>" alt="uminho_cup_logo" />
+            </figure>
+          </div>
 
           <div class="span9 content">
 
