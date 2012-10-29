@@ -15,6 +15,7 @@ module PlayFutsal
       File.expand_path '../../app', called_from
     end
 
+
     %w{controller helper model}.each do |resource|
       class_eval <<-RUBY
         def self.#{resource}_path(name)
