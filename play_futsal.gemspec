@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = PlayFutsal::VERSION
   s.authors     = ["Miguel Palhas"]
   s.email       = ["mpalhas@gmail.com"]
-  s.homepage    = "naps62.github.com"
+  s.homepage    = "http://naps62.github.com"
   s.summary     = "A Futsal Tournament Engine"
   s.description = "Manages a futsal tournament"
 
