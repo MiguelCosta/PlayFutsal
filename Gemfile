@@ -14,11 +14,11 @@ group :development do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'factory_girl'
   gem 'faker'
 end
 
-gem 'sqlite3', :group => [:development, :test]
 group :production do
   gem 'thin'
   gem 'pg'
