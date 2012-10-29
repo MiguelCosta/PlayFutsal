@@ -13,7 +13,7 @@ module PlayFutsal
     has_many :teams, :through => :participations
 
     def home
-      self.participations.first
+      self.participations.order('id ASC').first
     end
 
     def away
@@ -24,16 +24,17 @@ module PlayFutsal
     #### Accessors ####
 
     attr_accessible :phase_id,
-      :events,
-      :participations,
-      :teams,
-      :athlete_stats,
-      :home_team_stats,
-      :away_team_stats,
-      :started,
-      :finished,
-      :desc,
-      :datetime
+                    :events,
+                    :participations,
+                    :teams,
+                    :athlete_stats,
+                    :home_team_stats,
+                    :away_team_stats,
+                    :started,
+                    :finished,
+                    :desc,
+                    :datetime,
+                    :group_id
 
 
     #### Validators ####
