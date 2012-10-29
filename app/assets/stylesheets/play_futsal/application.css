@@ -22,3 +22,13 @@ body {
 .right-align {
   text-align: right;
 }
+
+.icon-goal{
+  font-weight:normal;
+  background-image: url("/assets/icon-goal.png") no-repeat 14px 14px;
+  /*background-image: url("/assets/icon-goal.png");
+  background: #00ff00 url(<%= asset_path 'icon-goal.png' %>) no-repeat fixed center;
+  background:url(<%=asset_path "/images/play_futsal/icon-goal.png"%>);
+  background:url('/images/play_futsal/icon-goal.png') no-repeat 14px 14px;*/
+  display:block;
+}
