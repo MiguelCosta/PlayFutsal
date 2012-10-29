@@ -37,6 +37,14 @@
 
           <div class="span9 content">
 
+            
+
+              <% if current_user && current_user.admin? %>
+                ADMIN
+              <% else %>
+                NOT_ADMIN
+              <% end %>
+
             <% if flash[:notice] %>
               <div class="alert alert-success" id="notice"><%= flash[:notice] %></div>
             <% end %>

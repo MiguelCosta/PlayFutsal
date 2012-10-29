@@ -12,12 +12,16 @@
     <tr>
       <th>Total</th>
       <th><%= @athlete.goals %></th>
+      <th><%= @athlete.yellow_cards %></th>
+      <th><%= @athlete.red_cards %></th>
     </tr>
 
     <% @athlete.athlete_stats.each do |stat| %>
       <tr>
         <td><%= stat.match.desc %></td>
         <td><%= stat.goals %></td>
+        <th><%= stat.yellow_cards %></th>
+        <th><%= stat.red_cards %></th>
       </tr>
     <% end %>
   </tbody>

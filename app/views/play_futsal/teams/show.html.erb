@@ -2,8 +2,10 @@
 
 <div class="hero-unit">
 
-  <%= link_to 'Delete', team_path(@team), :method => :delete, :class => 'btn pull-right' %>
-  <%= link_to 'Edit', edit_team_path(@team), :class => 'btn pull-right' %>
+  <% if admin? %>
+    <%= link_to 'Delete', team_path(@team), :method => :delete, :class => 'btn pull-right' %>
+    <%= link_to 'Edit', edit_team_path(@team), :class => 'btn pull-right' %>
+  <% end %>
 
   <p>Athletes:</p>
   <%= render 'play_futsal/athletes/table', :athletes => @team.athletes %>

@@ -8,7 +8,7 @@
  *= require play_futsal/bs-docs-sidebar
  *= require_tree .
  *= require_self
-*/
+*/  
 
 .goal{
   font-weight:bold;

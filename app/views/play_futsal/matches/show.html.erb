@@ -9,18 +9,22 @@
       </h3>
   </div>
 
-<% if not @match.started? %>
-  <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => 'btn btn-success btn-mini' %>
-<% elsif not @match.finished? %>
-  <%= link_to 'End Game', finish_match_path(@match), :method => :put, :class => 'btn btn-danger btn-mini pull-right' %>
+<% if admin? %>
+  <% if not @match.started? %>
+    <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => 'btn btn-success btn-mini' %>
+  <% elsif not @match.finished? %>
+    <%= link_to 'End Game', finish_match_path(@match), :method => :put, :class => 'btn btn-danger btn-mini pull-right' %>
+  <% end %>
 <% end %>
 
 <% if @match.started? %>
   <%= render :partial => 'play_by_play' %>
 <% end %>
 
-  <%= link_to 'Edit',     edit_match_path(@match), :class => 'btn btn-mini' %>
-  <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => 'btn btn-mini' %>
+  <% if admin? %>
+    <%= link_to 'Edit',     edit_match_path(@match), :class => 'btn btn-mini' %>
+    <%= link_to 'Delete',   match_path(@match), :method => :delete, :class => 'btn btn-mini' %>
+  <% end %>
 </div>
 
 <%= render 'stats' %>

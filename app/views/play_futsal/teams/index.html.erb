@@ -3,7 +3,9 @@
 <div class="hero-unit">
   <%= render :partial => 'play_futsal/teams/table' %>
 
-  <div class="actions">
-    <%= link_to 'New Team', new_team_path, :class => 'btn' %>
-  </div>
+  <% if admin? %>
+    <div class="actions">
+      <%= link_to 'New Team', new_team_path, :class => 'btn' %>
+    </div>
+  <% end %>
 </div>

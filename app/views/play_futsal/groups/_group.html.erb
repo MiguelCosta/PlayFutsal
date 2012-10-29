@@ -1,5 +1,7 @@
-<%= link_to 'New Match for this group', new_group_match_path(group), :class => 'btn pull-right' %>
-<%= link_to 'Edit', edit_group_path(group), :class => 'btn pull-right' %>
+<% if admin? %>
+  <%= link_to 'New Match for this group', new_group_match_path(group), :class => 'btn pull-right' %>
+  <%= link_to 'Edit', edit_group_path(group), :class => 'btn pull-right' %>
+<% end %>
 
 <table class="table">
   <thead>

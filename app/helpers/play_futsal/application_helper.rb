@@ -17,5 +17,10 @@ module PlayFutsal
       # Displays Team's name and selects the team's user_id
       options_for_select(@teams.collect { |t| [t.name, t.id] }, object.teams.map(&:id))
     end
+
+
+    def admin?
+      current_user && current_user.admin?
+    end
   end
 end

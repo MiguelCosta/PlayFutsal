@@ -6,5 +6,7 @@
     <%= render :partial => 'phase', :locals => { :phase => phase } %>
   <% end %>
 
-  <%= link_to 'New Phase', new_phase_path, :class => :btn %>
+  <% if admin? %>
+    <%= link_to 'New Phase', new_phase_path, :class => :btn %>
+  <% end %>
 </div>

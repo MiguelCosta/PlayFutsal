@@ -5,7 +5,9 @@
     <thead>
       <th>#</th>
       <th>Name</th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+      <% end %>
     </thead>
 
     <tbody>
@@ -13,7 +15,9 @@
         <tr>
           <td><%= athlete.number %></td>
           <td><%= athlete.name %></td>
-          <td><%= link_to 'Remove', remove_from_team_athlete_path(athlete), :method => :delete %></td>
+          <% if admin? %>
+            <td><%= link_to 'Remove', remove_from_team_athlete_path(athlete), :method => :delete %></td>
+          <% end %>
       <% end %>
     </tbody>
   </table>

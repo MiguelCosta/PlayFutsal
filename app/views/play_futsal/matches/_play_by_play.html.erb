@@ -6,7 +6,9 @@
       <th>Minute</th>
       <th>Event</th>
       <th>Player</th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -16,11 +18,14 @@
         <td><%= event.minute %></td>
         <td><%= event.event_type.name %></td>
         <td><%= event.athlete.name_with_team %></td>
-        <td><%= link_to '', match_event_path(@match, event), :method => :delete, :class => 'icon-remove' %></td>
+        <% if admin? %>
+          <td><%= link_to '', match_event_path(@match, event), :method => :delete, :class => 'icon-remove' %></td>
+        <% end %>
       </tr>
     <% end if @events %>
 
-    
-    <%= render 'new_event_form' %>
+    <% if admin? %>
+      <%= render 'new_event_form' %>
+    <% end %>
   </tbody>
 </table>

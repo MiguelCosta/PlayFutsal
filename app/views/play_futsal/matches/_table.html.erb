@@ -8,8 +8,10 @@
       <th></th>
       <th>Away</th>
       <th>Date/Time</th>
-      <th></th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,8 +23,10 @@
         <td>vs</td>
         <td><%= link_to match.away.team.name, match.away.team %></td>
         <td><%= match.datetime.to_formatted_s :short unless match.datetime.nil? %></td>
-        <td><%= link_to 'Edit',   edit_match_path(match) %></td>
-        <td><%= link_to 'Delete', match_path(match), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        <% if admin? %>
+          <td><%= link_to 'Edit',   edit_match_path(match) %></td>
+          <td><%= link_to 'Delete', match_path(match), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

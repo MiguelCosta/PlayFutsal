@@ -1,5 +1,7 @@
-<%= link_to 'New Match for this phase', new_phase_match_path(phase), :class => 'btn pull-right' %>
-<%= link_to 'Edit', edit_phase_path(phase), :class => 'btn pull-right' %>
+<% if admin %>
+  <%= link_to 'New Match for this phase', new_phase_match_path(phase), :class => 'btn pull-right' %>
+  <%= link_to 'Edit', edit_phase_path(phase), :class => 'btn pull-right' %>
+<% end %>
 
 
 <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => phase.matches } %>

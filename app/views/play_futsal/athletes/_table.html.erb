@@ -7,6 +7,9 @@
       <th><div class="goal"></div></th>
       <th><div class="yellowcard"></div></th>
       <th><div class="redcard"></div></th>
+      <% if admin? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -20,7 +23,9 @@
         <td><%= athlete.goals %></td>
         <td><%= athlete.yellow_cards %></td>
         <td><%= athlete.red_cards %></td>
-        <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
+        <% if admin? %>
+          <td><%= link_to 'Edit', edit_athlete_path(athlete) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

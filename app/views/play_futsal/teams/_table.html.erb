@@ -5,8 +5,10 @@
     <tr>
       <th>Name</th>
       <th># Athletes</th>
-      <th></th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   
@@ -15,8 +17,10 @@
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.athletes.count %></td>
-        <td><%= link_to 'Edit',   edit_team_path(team) %></td>
-        <td><%= link_to 'Delete', team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        <% if admin? %>
+          <td><%= link_to 'Edit',   edit_team_path(team) %></td>
+          <td><%= link_to 'Delete', team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
