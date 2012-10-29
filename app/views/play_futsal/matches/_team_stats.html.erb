@@ -2,9 +2,9 @@
 <table class='table table-condensed table-hover'>
   <thead>
     <tr>
-      <th><div class="icon-goal">asas</div></th>
-      <th>Yellow</th>
-      <th>Red</th>
+      <th><div class="goal"></div></th>
+      <th><div class="yellowcard"></div></th>
+      <th><div class="redcard"></div></th>
     </tr>
   </thead>
 
@@ -22,9 +22,9 @@
   <thead>
     <tr>
       <th>Player</th>
-      <th><div class="icon-goal"></div></th>
-      <th>Yellow</th>
-      <th>Red</th>
+      <th><div class="goal"></div></th>
+      <th><div class="yellowcard"></div></th>
+      <th><div class="redcard"></div></th>
     </tr>
   </thead>
 
@@ -33,7 +33,7 @@
       <tr>
         <td><%= link_to stats.athlete.name, athlete_path(stats.athlete) %></td>
         <% if stats %>
-          <td><%= show_athlete_stat stats, :goals %></td>
+          <td class=""><%= show_athlete_stat stats, :goals %></td>
           <td><%= show_athlete_stat stats, :yellow_cards %></td>
           <td><%= show_athlete_stat stats, :red_cards %></td>
         <% end %>

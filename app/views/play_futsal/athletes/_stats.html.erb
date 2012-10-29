@@ -2,8 +2,9 @@
   <thead>
     <tr>
       <th></th>
-      <th>Goals</th>
-      <th>Fouls</th>
+      <th><div class="goal"</div></th>
+      <th><div class="yellowcard"></div></th>
+      <th><div class="redcard"></div></th>
     </tr>
   </thead>
 
@@ -11,14 +12,12 @@
     <tr>
       <th>Total</th>
       <th><%= @athlete.goals %></th>
-      <th><%= @athlete.fouls %></th>
     </tr>
 
     <% @athlete.athlete_stats.each do |stat| %>
       <tr>
         <td><%= stat.match.desc %></td>
         <td><%= stat.goals %></td>
-        <td><%= stat.fouls %></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,24 +11,35 @@
 */
 
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 60px;
 }
 
-.sidebar-nav {
-  padding: 9px 0;
+#logo {
 }
 
-.right-align {
-  text-align: right;
-}
-
-.icon-goal{
-  font-weight:normal;
-  background-image: url("/assets/icon-goal.png") no-repeat 14px 14px;
-  /*background-image: url("/assets/icon-goal.png");
-  background: #00ff00 url(<%= asset_path 'icon-goal.png' %>) no-repeat fixed center;
-  background:url(<%=asset_path "/images/play_futsal/icon-goal.png"%>);
-  background:url('/images/play_futsal/icon-goal.png') no-repeat 14px 14px;*/
+.goal{
+  font-weight:bold;
+  background: url("/assets/play_futsal/icon-goal.png");
+  background-repeat:no-repeat;
   display:block;
+  padding-top:12px;
+  padding-bottom:3px;
+}
+
+.yellowcard{
+  font-weight:bold;
+  background: url("/assets/play_futsal/icon-yellowcard.png");
+  background-repeat:no-repeat;
+  display:block;
+  padding-top:12px;
+  padding-bottom:3px;
+}
+
+.redcard{
+  font-weight:bold;
+  background: url("/assets/play_futsal/icon-redcard.png");
+  background-repeat:no-repeat;
+  display:block;
+  padding-top:12px;
+  padding-bottom:3px;
 }
