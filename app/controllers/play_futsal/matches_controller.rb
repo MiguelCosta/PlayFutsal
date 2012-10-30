@@ -18,6 +18,9 @@ module PlayFutsal
       @matches = Match.find :all, :order => 'datetime'
     end
 
+    def live
+      @matches = Match.find_all_by_started_and_finished(true, false)
+    end
 
     def show
       @match = Match.find params[:id]

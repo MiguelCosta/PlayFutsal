@@ -23,5 +23,6 @@ module PlayFutsal
       end
       raw stat.join
     end
+
   end
 end
