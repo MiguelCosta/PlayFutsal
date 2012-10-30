@@ -55,6 +55,8 @@ module PlayFutsal
 
     #### Scopes ####
 
+    default_scope -> { order 'datetime ASC' }
+
     # matches belonging to a group
     scope :in_group, lambda { where "group_id IS NOT NULL" }
 
@@ -71,7 +73,6 @@ module PlayFutsal
     # callback for creating a stats record
     # for each player and team associated with this match
     def begin
-      debugger
       if !started
         self.update_attribute :started, true
         # Create one record for each athlete

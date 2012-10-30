@@ -17,6 +17,9 @@ module PlayFutsal
                     :red_cards
 
 
+    #### Scopes ####
+    default_scope -> { order 'id ASC' }
+
     #### Validators ####
 
     validate :team, :uniqueness => { :scope => :match_id }

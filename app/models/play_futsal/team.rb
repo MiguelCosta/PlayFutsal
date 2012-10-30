@@ -31,6 +31,8 @@ module PlayFutsal
 
     #### Scopes ####
 
+    default_scope order('id ASC')
+
     scope :not_in_group, {
         :joins      => "LEFT JOIN play_futsal_group_stats ON play_futsal_teams.id = play_futsal_group_stats.team_id",
         :conditions => "play_futsal_group_stats.team_id IS NULL",

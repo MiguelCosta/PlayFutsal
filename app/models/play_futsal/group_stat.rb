@@ -25,6 +25,9 @@ module PlayFutsal
                     :position
 
 
+    #### Scopes ####
+    default_scope order('id ASC')
+    
     #### Methods ####
 
     def wins

@@ -1,15 +1,16 @@
-<h3><%= team.name %></h3>
 <table class='table table-condensed table-hover'>
   <thead>
     <tr>
-      <th><div class="goal"></div></th>
-      <th><div class="yellowcard"></div></th>
-      <th><div class="redcard"></div></th>
+      <th></th>
+      <th><div class="stat-col goal"></div></th>
+      <th><div class="stat-col yellowcard"></div></th>
+      <th><div class="stat-col redcard"></div></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
+      <th><%= team.name %></th>
       <td><%= participation.goals %></td>
       <td><%= participation.yellow_cards %></td>
       <td><%= participation.red_cards %></td>
@@ -22,9 +23,9 @@
   <thead>
     <tr>
       <th>Player</th>
-      <th><div class="goal"></div></th>
-      <th><div class="yellowcard"></div></th>
-      <th><div class="redcard"></div></th>
+      <th><div class="stat-col goal"></div></th>
+      <th><div class="stat-col yellowcard"></div></th>
+      <th><div class="stat-col redcard"></div></th>
     </tr>
   </thead>
 

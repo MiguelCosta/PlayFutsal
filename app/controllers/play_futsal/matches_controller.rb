@@ -22,24 +22,24 @@ module PlayFutsal
     def show
       @match = Match.find params[:id]
 
-      @events = Event.find_all_by_match_id params[:id], :order => 'minute'
+      @events = Event.find_all_by_match_id params[:id]
       @event  = Event.new
     end
 
 
     def new
       @match = Match.new
-      @groups = Group.all
+      @groups = Group.find :all
       @group = params[:group_id]
-      @phases = Phase.all
+      @phases = Phase.find :all
       @phase = params[:phase_id]
     end
 
 
     def edit
       @match = Match.find params[:id]
-      @groups = Group.all
-      @phases = Phase.all
+      @groups = Group.find :all
+      @phases = Phase.find :all
     end
 
 

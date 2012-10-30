@@ -11,7 +11,7 @@ module PlayFutsal
     #### Actions ####
 
     def index
-      @groups = Group.all
+      @groups = Group.find :all
     end
 
     def show
@@ -32,7 +32,7 @@ module PlayFutsal
       end
 
       # only select teams without group
-      @teams = Team.find_all_by_group_id nil
+      @teams = Team.not_in_group
     end
 
 

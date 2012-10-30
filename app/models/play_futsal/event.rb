@@ -15,5 +15,9 @@ module PlayFutsal
                     :desc,
                     :athlete_id,
                     :event_type_id
+
+
+    #### Scopes ####
+    default_scope ->{ order :minute }
   end
 end

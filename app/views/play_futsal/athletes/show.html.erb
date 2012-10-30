@@ -1,4 +1,4 @@
-<%= content_for :title do @athlete.name end %>
+<%= content_for :title do "Athlete - #{@athlete.name}" end %>
 
 <div class="hero-unit">
 <%= link_to  'User Profile', play_auth.user_path(@athlete.user) %>
@@ -8,10 +8,11 @@ Team: <%= link_to @athlete.team.name, @athlete.team %>
 Number: <%= @athlete.number %>
 <br />
 
-<div class='actions'>
-  <%= link_to 'Edit',     edit_athlete_path(@athlete) %>
- <!--  <%= link_to 'Delete',   athlete_path(@athlete), :method => :delete %> -->
-</div>
+<% if admin? %>
+  <div class='actions'>
+    <%= link_to 'Edit',     edit_athlete_path(@athlete) %>
+  </div>
+<% end %>
 
 <%= render :partial => 'stats' %>
 </div>
