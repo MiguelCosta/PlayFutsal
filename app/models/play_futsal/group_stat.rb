@@ -51,5 +51,13 @@ module PlayFutsal
       goals_for - goals_against
     end
 
+    def points
+      (wins*3) + draws
+    end
+
+    def to_s
+      "TeamID: #{team_id} | GroupID #{group_id} | Postion: #{position} | Points: #{points}"
+    end
+
   end
 end

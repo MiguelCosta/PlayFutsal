@@ -33,9 +33,9 @@
       <tr>
         <td><%= link_to stats.athlete.name, athlete_path(stats.athlete) %></td>
         <% if stats %>
-          <td class=""><%= show_athlete_stat stats, :goals %></td>
-          <td><%= show_athlete_stat stats, :yellow_cards %></td>
-          <td><%= show_athlete_stat stats, :red_cards %></td>
+          <td class=""><%= show_athlete_stat stats, :goals, match %></td>
+          <td><%= show_athlete_stat stats, :yellow_cards, match %></td>
+          <td><%= show_athlete_stat stats, :red_cards, match %></td>
         <% end %>
       </tr>
     <% end %>

@@ -2,11 +2,18 @@
 
 <div class="hero-unit">
   <div class='item'>
-      <h3>
-        <%= link_to @match.home.team.name, team_path(@match.home.team) %>
-        vs
-        <%= link_to @match.away.team.name, team_path(@match.away.team) %>
-      </h3>
+    <h3>
+      <%= @match.to_s %>
+    </h3>
+    <h5>
+      Home Team: <%= link_to @match.home.team.name, team_path(@match.home.team) %>
+    </h5>
+    <h5>
+      Away Team: <%= link_to @match.away.team.name, team_path(@match.away.team) %>
+    </h5>
+    <h6>
+      <%= @match.win %>
+    </h6>
   </div>
 
 <% if admin? %>
@@ -28,3 +35,6 @@
 </div>
 
 <%= render 'stats' %>
+
+
+<%= @match.refresh_group_stat %>

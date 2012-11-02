@@ -70,7 +70,6 @@ module PlayFutsal
     # callback for creating a stats record
     # for each player and team associated with this match
     def begin
-      debugger
       if !started
         self.update_attribute :started, true
         # Create one record for each athlete
@@ -86,15 +85,6 @@ module PlayFutsal
         self.update_attribute :finished, true
         self.athlete_stats.map  &:commit
         self.participations.map &:commit
-        #self.athlete_stats.each do |athlete_stat|
-          #athlete_stat.athlete.increment_stat(:goals, athlete_stat.goals)
-          #athlete_stat.athlete.increment_stat(:fouls, athlete_stat.fouls)
-          #athlete_stat.athlete.save
-        #end
-
-        # commit team stats
-        #self.participations.first.increment_all_stat
-        #self.participations.last.increment_all_stat
       end
     end
 
@@ -121,6 +111,50 @@ module PlayFutsal
 
     def away_athletes_stats
       AthleteStat.by_match(self).by_team(self.away.team)
+    end
+
+    def to_s
+      to_s = if self.started?
+        "#{self.desc} | #{home.to_s(true)} - #{away.to_s(false)}"
+      else
+        "#{self.desc} | #{home.to_s} vs #{away.to_s}"
+      end
+    end
+
+    def win
+      if home.goals > away.goals
+        "H"
+      elsif home.goals < away.goals
+        "A"
+      else
+        "D"
+      end
+    end
+
+
+    # colocar isto quando se termina o jogo, retirar do incremt_athlete_path
+    def refresh_group_stat
+      if group_id
+        diff_goals = home.goals - away.goals
+
+        gsHome = GroupStat.find_by_group_id_and_team_id(group_id, home.team.id)
+        gsHome.update_attribute(:goals_for_home, gsHome.goals_for_home + home.goals)
+        gsHome.update_attribute(:goals_against_home, gsHome.goals_against_home + away.goals)
+        gsHome.update_attribute(:wins_home, gsHome.wins_home + 1) if diff_goals > 0
+        gsHome.update_attribute(:draws_home, gsHome.draws_home + 1) if diff_goals == 0
+        gsHome.update_attribute(:losses_home, gsHome.losses_home + 1) if diff_goals < 0
+
+        gsAway = GroupStat.find_by_group_id_and_team_id(group_id, away.team.id)
+        gsAway.update_attribute(:goals_for_away, gsAway.goals_for_away + away.goals)
+        gsAway.update_attribute(:goals_against_away, gsAway.goals_against_away + home.goals)
+        gsAway.update_attribute(:wins_away, gsAway.wins_away + 1) if diff_goals < 0
+        gsAway.update_attribute(:draws_away, gsAway.draws_away + 1) if diff_goals == 0
+        gsAway.update_attribute(:losses_away, gsAway.losses_away + 1) if diff_goals > 0
+
+        "#{gsHome.to_s} ||||| #{gsAway.to_s}"
+      else
+        "nao grupo"
+      end
     end
 
 

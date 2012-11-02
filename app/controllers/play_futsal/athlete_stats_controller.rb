@@ -8,6 +8,7 @@ module PlayFutsal
     def increment
       @athlete_stat.increment @stat_name
       @team_participation.increment @stat_name
+      @match.refresh_group_stat  # isto é para retirar daqui e colocar apenas no final do jogo
       redirect_to :back
     end
 
@@ -23,6 +24,7 @@ module PlayFutsal
         @athlete_stat       = AthleteStat.find params[:id]
         @team_participation = @athlete_stat.team_participation
         @stat_name          = params[:stat]
+        @match              = Match.find_by_id(params[:format])
       end
   end
 end

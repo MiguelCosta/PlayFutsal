@@ -13,6 +13,9 @@
   </thead>
 
   <tbody>
+    <% if admin? %>
+      <%= render 'new_event_form' %>
+    <% end %>
     <% @events.each do |event| %>
       <tr>
         <td><%= event.minute %></td>
@@ -23,9 +26,5 @@
         <% end %>
       </tr>
     <% end if @events %>
-
-    <% if admin? %>
-      <%= render 'new_event_form' %>
-    <% end %>
   </tbody>
 </table>

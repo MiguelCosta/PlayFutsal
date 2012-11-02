@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th></th>
+      <th title="Position"></th>
       <th title="Matches Played">M</th>
       <th title="Wins">W</th>
       <th title="Draws">D</th>
@@ -22,6 +23,7 @@
     <% group.teams.each do |team| %>
       <tr>
         <td style="width:40%"><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.group_stat.position %></td>
         <td><%= team.group_stat.matches_played %></td>
         <td><%= team.group_stat.wins %></td>
         <td><%= team.group_stat.draws %></td>

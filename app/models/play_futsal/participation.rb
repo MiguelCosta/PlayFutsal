@@ -40,5 +40,16 @@ module PlayFutsal
       end
     end
 
+    def to_s(home = nil)
+      to_s = case home
+      when TRUE
+        "#{team.to_s} (#{goals})"
+      when FALSE
+        "(#{goals}) #{team.to_s}"
+      else
+        "#{team.to_s}"
+      end
+    end
+
   end
 end
