@@ -6,16 +6,18 @@
       <%= @match.to_s %>
     </h3>
     <h5>
-      Home Team: <%= link_to @match.home.team.name, team_path(@match.home.team) %>
+      Home Team: 
+      <%= link_to @match.home.team.name, team_path(@match.home.team) %>
+      <%= " (winner) " if @match.win == "H" %>
     </h5>
     <h5>
-      Away Team: <%= link_to @match.away.team.name, team_path(@match.away.team) %>
+      Away Team: 
+      <%= link_to @match.away.team.name, team_path(@match.away.team) %>
+      <%= " (winner) " if @match.win == "A" %>
     </h5>
-    <h6>
-      <%= @match.win %>
-    </h6>
   </div>
 
+<br/>
 <% if admin? %>
   <% if not @match.started? %>
     <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => 'btn btn-success btn-mini' %>
@@ -35,6 +37,3 @@
 </div>
 
 <%= render 'stats' %>
-
-
-<%= @match.refresh_group_stat %>

@@ -51,7 +51,6 @@ module PlayFutsal
     end
 
 
-
     #### Scopes ####
 
     # matches belonging to a group
@@ -82,23 +81,20 @@ module PlayFutsal
     # callback to commit a stats record
     def finish
       if !finished
+        # ver como se coloca aqui uma transaction, caso contrário se der erro
+        # algmas coisas ficam na mesma inseridas na BD
         self.update_attribute :finished, true
         self.athlete_stats.map  &:commit
         self.participations.map &:commit
+        self.refresh_group_stat
       end
     end
-
 
     def athletes
       athletes = []
       athletes << self.home.team.athletes if self.home.team
       athletes << self.away.team.athletes if self.away.team
       athletes.flatten
-    end
-
-
-    def desc_with_goals
-      "#{self.desc} (#{self.goals})"
     end
 
     def add_participations(home_id, away_id)
@@ -131,33 +127,6 @@ module PlayFutsal
       end
     end
 
-
-    # colocar isto quando se termina o jogo, retirar do incremt_athlete_path
-    def refresh_group_stat
-      if group_id
-        diff_goals = home.goals - away.goals
-
-        gsHome = GroupStat.find_by_group_id_and_team_id(group_id, home.team.id)
-        gsHome.update_attribute(:goals_for_home, gsHome.goals_for_home + home.goals)
-        gsHome.update_attribute(:goals_against_home, gsHome.goals_against_home + away.goals)
-        gsHome.update_attribute(:wins_home, gsHome.wins_home + 1) if diff_goals > 0
-        gsHome.update_attribute(:draws_home, gsHome.draws_home + 1) if diff_goals == 0
-        gsHome.update_attribute(:losses_home, gsHome.losses_home + 1) if diff_goals < 0
-
-        gsAway = GroupStat.find_by_group_id_and_team_id(group_id, away.team.id)
-        gsAway.update_attribute(:goals_for_away, gsAway.goals_for_away + away.goals)
-        gsAway.update_attribute(:goals_against_away, gsAway.goals_against_away + home.goals)
-        gsAway.update_attribute(:wins_away, gsAway.wins_away + 1) if diff_goals < 0
-        gsAway.update_attribute(:draws_away, gsAway.draws_away + 1) if diff_goals == 0
-        gsAway.update_attribute(:losses_away, gsAway.losses_away + 1) if diff_goals > 0
-
-        "#{gsHome.to_s} ||||| #{gsAway.to_s}"
-      else
-        "nao grupo"
-      end
-    end
-
-
     #### Private Methods ####
     protected
 
@@ -166,6 +135,21 @@ module PlayFutsal
         errors.add :started, "Match has to start before it can finish"
       end
     end
+
+    def refresh_group_stat
+      if self.group_id
+
+        gsHome = GroupStat.find_by_group_id_and_team_id(self.group_id, self.home.team.id)
+        gsHome.refresh_group_stat("home", home.goals, away.goals)
+
+        gsAway = GroupStat.find_by_group_id_and_team_id(self.group_id, self.away.team.id)
+        gsAway.refresh_group_stat("away", home.goals, away.goals)
+
+        g = Group.find_by_id(group_id)
+        g.refresh_positons
+      end
+    end
+
 
   end
 end

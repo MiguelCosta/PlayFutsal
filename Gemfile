@@ -29,9 +29,3 @@ group :assets do
 end
 
 gem 'play_auth', :git => 'git@github.com:naps62/PlayAuth.git'
-
-gem 'sass-rails'
-gem 'coffee-rails'
-
-gem 'uglifier'
-gem 'jquery-datatables-rails'
