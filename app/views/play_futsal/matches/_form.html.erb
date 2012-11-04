@@ -15,12 +15,12 @@
 
   <div class='field'>
     <%= form.label :group %>
-    <%= form.collection_select :group_id, @groups, :id, :name, :include_blank => true, :selected => @group %>
+    <%= form.collection_select :group_id, @groups, :id, :name, :include_blank => true, :selected => @match.group_id %>
   </div>
 
   <div class='field'>
     <%= form.label :phase %>
-    <%= form.collection_select :phase_id, @phases, :id, :name, :include_blank => true, :selected => @phase %>
+    <%= form.collection_select :phase_id, @phases, :id, :name, :include_blank => true, :selected => @match.phase_id %>
   </div>
 
   <div class='field'>
@@ -32,15 +32,12 @@
     <%= form.label :date %>
     <%= form.datetime_select 'datetime' %>
 
-  <div class='field'>
-    <%= form.label :home_team %>
-    <%= collection_select :home_team, :id, @teams, :id, :name %>
-  </div>
-
-  <div class='field'>
-    <%= form.label :away_team %>
-    <%= collection_select :away_team, :id, @teams, :id, :name %>
-  </div>
+  <%= form.fields_for :participations, @match.participations do |participation| %>
+    <div class='field'>
+      <%= participation.label :team %>
+      <%= participation.collection_select :team_id, @teams, :id, :name %>
+    </div>
+  <% end %>
 
   <div class='form-actions'>
     <%= form.submit 'Save' %>

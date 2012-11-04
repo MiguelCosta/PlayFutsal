@@ -3,9 +3,9 @@
 <div class="hero-unit">
   <div class='item'>
       <h3>
-        <%= link_to @match.home.team.name, team_path(@match.home.team) %>
+        <%= link_to @match.home.team.name, team_path(@match.home.team) if @match.home.team %>
         vs
-        <%= link_to @match.away.team.name, team_path(@match.away.team) %>
+        <%= link_to @match.away.team.name, team_path(@match.away.team) if @match.away.team %>
       </h3>
   </div>
 
@@ -27,4 +27,4 @@
   <% end %>
 </div>
 
-<%= render 'stats' %>
+<%= render 'stats', match: @match %>

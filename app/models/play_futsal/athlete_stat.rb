@@ -19,8 +19,8 @@ module PlayFutsal
     #### Scopes ####
     default_scope -> { order 'id ASC' }
 
-    scope :by_match, lambda { |match| where :match_id => match.id }
-    scope :by_team,  lambda { |team|  joins(:athlete).where('play_futsal_athletes.team_id'  => team.id) }
+    scope :by_match, lambda { |match_id| where :match_id => match_id }
+    scope :by_team,  lambda { |team_id|  joins(:athlete).where('play_futsal_athletes.team_id'  => team_id) }
 
     #### Methods ####
 

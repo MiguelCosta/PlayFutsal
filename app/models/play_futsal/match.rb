@@ -1,6 +1,11 @@
 module PlayFutsal
   class Match < ActiveRecord::Base
 
+    def initialize(*args)
+      super
+      build_participations
+    end
+
     #### Relations ####
 
     belongs_to :phase
@@ -9,8 +14,10 @@ module PlayFutsal
     has_many :events, :dependent => :destroy
     has_many :athlete_stats
 
-    has_many :participations, :class_name =>'PlayFutsal::Participation'
+    has_many :participations, :dependent => :destroy, :class_name =>'PlayFutsal::Participation'
     has_many :teams, :through => :participations
+
+    accepts_nested_attributes_for :participations
 
     def home
       self.participations.order('id ASC').first
@@ -19,6 +26,9 @@ module PlayFutsal
     def away
       self.participations.last
     end
+
+    #### Callbacks ####
+    #after_save :create_participations
 
 
     #### Accessors ####
@@ -34,22 +44,14 @@ module PlayFutsal
                     :finished,
                     :desc,
                     :datetime,
-                    :group_id
+                    :group_id,
+                    :phase_id,
+                    :participations_attributes
 
 
     #### Validators ####
 
     validates :desc, :presence => true
-    validate :has_two_participations
-    validate :participants_are_different
-
-    def has_two_participations
-      errors.add(:participations, "Two teams are required") if self.participations.size != 2
-    end
-
-    def participants_are_different
-      errors.add(:participations, "Teams can't be the same") if home.team == away.team
-    end
 
 
 
@@ -70,6 +72,18 @@ module PlayFutsal
 
     #### Methods ####
 
+    def build_participations
+      if self.participations.size != 2
+        self.participations.build
+        self.participations.build
+      end
+    end
+
+    def set_teams(home_team_id, away_team_id)
+      self.home.update_attributes(team_id: home_team_id)
+      self.away.update_attributes(team_id: away_team_id)
+    end
+
     # callback for creating a stats record
     # for each player and team associated with this match
     def begin
@@ -88,15 +102,6 @@ module PlayFutsal
         self.update_attribute :finished, true
         self.athlete_stats.map  &:commit
         self.participations.map &:commit
-        #self.athlete_stats.each do |athlete_stat|
-          #athlete_stat.athlete.increment_stat(:goals, athlete_stat.goals)
-          #athlete_stat.athlete.increment_stat(:fouls, athlete_stat.fouls)
-          #athlete_stat.athlete.save
-        #end
-
-        # commit team stats
-        #self.participations.first.increment_all_stat
-        #self.participations.last.increment_all_stat
       end
     end
 
@@ -111,18 +116,6 @@ module PlayFutsal
 
     def desc_with_goals
       "#{self.desc} (#{self.goals})"
-    end
-
-    def add_participations(home_id, away_id)
-      self.participations.build [{:team_id => home_id}, {:team_id => away_id}]
-    end
-
-    def home_athletes_stats
-      AthleteStat.by_match(self).by_team(self.home.team)
-    end
-
-    def away_athletes_stats
-      AthleteStat.by_match(self).by_team(self.away.team)
     end
 
 

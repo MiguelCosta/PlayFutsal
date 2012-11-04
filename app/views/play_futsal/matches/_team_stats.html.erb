@@ -11,9 +11,9 @@
   <tbody>
     <tr>
       <th><%= team.name %></th>
-      <td><%= participation.goals %></td>
-      <td><%= participation.yellow_cards %></td>
-      <td><%= participation.red_cards %></td>
+      <td><%= show_team_stat participation, :goals %><%#= participation.goals %></td>
+      <td><%= show_team_stat participation, :yellow_cards %><%#= participation.yellow_cards %></td>
+      <td><%= show_team_stat participation, :red_cards %><%#= participation.red_cards %></td>
     </tr>
   </tbody>
 </table>

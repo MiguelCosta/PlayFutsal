@@ -5,6 +5,6 @@
   <%= link_to 'New Match', new_match_path, :class => 'btn pull-right' %>
 <% end %>
 
-<%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matches } %>
+<%= render 'play_futsal/matches/table',  :matches => @matches %>
 
 </div>
