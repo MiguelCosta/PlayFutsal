@@ -20,9 +20,10 @@
   </thead>
 
   <tbody>
-    <% group.teams.each do |team| %>
+    <% group.group_stats.each do |team_stat| %>
       <tr>
-        <td><%= team.group_stat.position %></td>
+        <% team = team_stat.team %>
+        <td><%= show_team_position(team, group.teams) %></td>
         <td style="width:40%"><%= link_to team.name, team_path(team) %></td>
         <td><%= team.group_stat.matches_played %></td>
         <td><%= team.group_stat.wins %></td>

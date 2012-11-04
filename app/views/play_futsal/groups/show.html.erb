@@ -2,11 +2,11 @@
 
 <div class="hero-unit">
   <h3>Group Stats</h3>
-  <%= render :partial => 'group', :locals => { :group => @group } %>
+  <%= render 'group', :group => @group %>
 
   <hr />
   <h3>Match List</h3>
-  <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @group.matches } %>
+  <%= render 'play_futsal/matches/table', :matches => @group.matches %>
 
   <% if admin? %>
     <div class='actions'>

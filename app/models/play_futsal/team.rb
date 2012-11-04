@@ -33,6 +33,9 @@ module PlayFutsal
 
     default_scope order('id ASC')
 
+    scope :by_group, lambda { |group|   joins(:group_stat).where('play_futsal_group_stats.group_id' => group.id) }
+    scope :by_team,  lambda { |team_id| joins(:athlete).where('play_futsal_athletes.team_id'  => team_id) }
+
     scope :not_in_group, {
         :joins      => "LEFT JOIN play_futsal_group_stats ON play_futsal_teams.id = play_futsal_group_stats.team_id",
         :conditions => "play_futsal_group_stats.team_id IS NULL",

@@ -18,7 +18,7 @@ module PlayFutsal
 
     def show_athlete_stat(stats, stat_name)
       stat = [stats.send(stat_name)]
-      if admin?
+      if admin? and stats.match.in_progress?
         stat.push(athlete_increment_stat_link(stats, stat_name), athlete_decrement_stat_link(stats, stat_name))
       end
       raw stat.join
@@ -42,7 +42,7 @@ module PlayFutsal
 
     def show_team_stat(stats, stat_name)
       stat = [stats.send(stat_name)]
-      if admin?
+      if admin? and stats.match.in_progress?
         stat.push(team_increment_stat_link(stats, stat_name), team_decrement_stat_link(stats, stat_name))
       end
       raw stat.join

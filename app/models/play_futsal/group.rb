@@ -14,10 +14,9 @@ module PlayFutsal
     attr_accessible :name
 
 
-<<<<<<< HEAD
     #### Scopes ####
     default_scope order('id ASC')
-=======
+
     def refresh_positons
         pos = 1
         # Há alguma forma de melhorar este método? fazer um map talvez...
@@ -28,6 +27,5 @@ module PlayFutsal
         end
     end
 
->>>>>>> d81633132ef3b129b96f950c6462735e40da0df6
   end
 end

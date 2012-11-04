@@ -42,6 +42,13 @@ PlayFutsal::Engine.routes.draw do
     end
   end
 
+  resources :group_stats do
+    member do
+      match 'increment' => 'group_stats#increment', as: :increment, via: :put
+      match 'decrement' => 'group_stats#decrement', as: :decrement, via: :put
+    end
+  end
+
   resources :teams
 
   resources :groups do

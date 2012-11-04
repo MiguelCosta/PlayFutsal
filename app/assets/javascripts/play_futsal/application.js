@@ -8,8 +8,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require play_futsal/bootstrap
-//= require play_futsal/dataTables/jquery.dataTables
-//= require play_futsal/dataTables/jquery.dataTables.bootstrap
 
 //$(document).ready  (function (){
 //  $(".bs-docs-sidebar").affix();

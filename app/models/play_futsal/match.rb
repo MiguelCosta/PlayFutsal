@@ -69,6 +69,10 @@ module PlayFutsal
     scope :finished,    lambda { where :finished => true  }
 
 
+    def in_progress?
+      started? and not finished?
+    end
+
     #### Methods ####
 
     def build_participations
@@ -155,7 +159,7 @@ module PlayFutsal
 
     def refresh_group_stat
       if self.group_id
-
+        debugger
         gsHome = GroupStat.find_by_group_id_and_team_id(self.group_id, self.home.team.id)
         gsHome.refresh_group_stat("home", home.goals, away.goals)
 

@@ -1,7 +1,7 @@
 <% groups.each do |group| %>
 
   <h3><%= link_to group.name, group_path(group) %></h3>
-  <%= render :partial => 'group', :locals => { :group => group } %>
+  <%= render 'group', :group => group %>
 
   <hr />
 

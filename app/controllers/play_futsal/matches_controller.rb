@@ -35,6 +35,10 @@ module PlayFutsal
       @match.phase = Phase.find params[:phase_id] if params[:phase_id]
       @groups = Group.find :all
       @phases = Phase.find :all
+
+      if @match.group
+        @teams = Team.by_group(@match.group)
+      end
     end
 
 
