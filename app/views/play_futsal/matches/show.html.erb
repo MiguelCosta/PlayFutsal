@@ -2,13 +2,22 @@
 
 <div class="hero-unit">
   <div class='item'>
-      <h3>
-        <%= link_to @match.home.team.name, team_path(@match.home.team) if @match.home.team %>
-        vs
-        <%= link_to @match.away.team.name, team_path(@match.away.team) if @match.away.team %>
-      </h3>
+    <h3>
+      <%= @match.to_s %>
+    </h3>
+    <h5>
+      Home Team: 
+      <%= link_to @match.home.team.name, team_path(@match.home.team) if @match.home.team %>
+      <%= " (winner) " if @match.win == "H" %>
+    </h5>
+    <h5>
+      Away Team: 
+      <%= link_to @match.away.team.name, team_path(@match.away.team) if @match.away.team %>
+      <%= " (winner) " if @match.win == "A" %>
+    </h5>
   </div>
 
+<br/>
 <% if admin? %>
   <% if not @match.started? %>
     <%= link_to 'Begin Game', begin_match_path(@match), :method => :put, :class => 'btn btn-success btn-mini' %>

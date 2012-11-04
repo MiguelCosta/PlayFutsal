@@ -54,7 +54,6 @@ module PlayFutsal
     validates :desc, :presence => true
 
 
-
     #### Scopes ####
 
     default_scope -> { order 'datetime ASC' }
@@ -99,12 +98,14 @@ module PlayFutsal
     # callback to commit a stats record
     def finish
       if !finished
+        # ver como se coloca aqui uma transaction, caso contrário se der erro
+        # algmas coisas ficam na mesma inseridas na BD
         self.update_attribute :finished, true
         self.athlete_stats.map  &:commit
         self.participations.map &:commit
+        self.refresh_group_stat
       end
     end
-
 
     def athletes
       athletes = []
@@ -113,11 +114,35 @@ module PlayFutsal
       athletes.flatten
     end
 
-
-    def desc_with_goals
-      "#{self.desc} (#{self.goals})"
+    def add_participations(home_id, away_id)
+      self.participations.build [{:team_id => home_id}, {:team_id => away_id}]
     end
 
+    def home_athletes_stats
+      AthleteStat.by_match(self).by_team(self.home.team)
+    end
+
+    def away_athletes_stats
+      AthleteStat.by_match(self).by_team(self.away.team)
+    end
+
+    def to_s
+      to_s = if self.started?
+        "#{self.desc} | #{home.to_s(true)} - #{away.to_s(false)}"
+      else
+        "#{self.desc} | #{home.to_s} vs #{away.to_s}"
+      end
+    end
+
+    def win
+      if home.goals > away.goals
+        "H"
+      elsif home.goals < away.goals
+        "A"
+      else
+        "D"
+      end
+    end
 
     #### Private Methods ####
     protected
@@ -127,6 +152,21 @@ module PlayFutsal
         errors.add :started, "Match has to start before it can finish"
       end
     end
+
+    def refresh_group_stat
+      if self.group_id
+
+        gsHome = GroupStat.find_by_group_id_and_team_id(self.group_id, self.home.team.id)
+        gsHome.refresh_group_stat("home", home.goals, away.goals)
+
+        gsAway = GroupStat.find_by_group_id_and_team_id(self.group_id, self.away.team.id)
+        gsAway.refresh_group_stat("away", home.goals, away.goals)
+
+        g = Group.find_by_id(group_id)
+        g.refresh_positons
+      end
+    end
+
 
   end
 end

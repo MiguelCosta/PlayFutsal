@@ -4,9 +4,6 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Home</th>
-      <th></th>
-      <th>Away</th>
       <th>Date/Time</th>
       <% if admin? %>
         <th></th>
@@ -18,10 +15,7 @@
   <tbody>
     <% matches.each do |match| %>
       <tr>
-        <td><%= link_to match.desc, match_path(match) %></td>
-        <td><%= link_to match.home.team.name, match.home.team if match.home.team %></td>
-        <td>vs</td>
-        <td><%= link_to match.away.team.name, match.away.team if match.away.team %></td>
+        <td><%= link_to match.to_s, match_path(match) %></td>
         <td><%= match.datetime.to_formatted_s :short unless match.datetime.nil? %></td>
         <% if admin? %>
           <td><%= link_to 'Edit',   edit_match_path(match) %></td>

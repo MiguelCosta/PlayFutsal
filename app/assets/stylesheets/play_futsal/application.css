@@ -8,6 +8,7 @@
  *= require play_futsal/bs-docs-sidebar
  *= require_tree .
  *= require_self
+ *= require play_futsal/dataTables/jquery.dataTables.bootstrap
 */  
 
 .stat-col {

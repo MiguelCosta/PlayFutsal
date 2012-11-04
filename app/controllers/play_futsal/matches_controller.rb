@@ -18,11 +18,13 @@ module PlayFutsal
       @matches = Match.find :all, :order => 'datetime'
     end
 
+    def live
+      @matches = Match.find_all_by_started_and_finished(true, false)
+    end
 
     def show
       @match = Match.find params[:id]
-
-      @events = Event.find_all_by_match_id params[:id]
+      @events = Event.find_all_by_match_id params[:id], :order => 'minute DESC'
       @event  = Event.new
     end
 
@@ -93,75 +95,6 @@ module PlayFutsal
       @match.finish
       if @match.update_attributes params[:match]
         redirect_to match_path(@match), :notice => "Match finished"
-      else
-        render :show
-      end
-    end
-
-
-    ################ 
-    #        Athlete Stats        #
-    ################
-    # athlete add goal
-    def athlete_add_goal
-      if @athlete_stat.update_attribute(:goals, @athlete_stat.goals+1)
-        redirect_to match_path(@match), :notice => "Goal added"
-      else
-        render :show
-      end
-    end
-    def athlete_remove_goal
-      if @athlete_stat.goals > 0 && @athlete_stat.update_attribute(:goals, @athlete_stat.goals-1)
-        redirect_to match_path(@match), :notice => "Goal removed"
-      else
-        render :show
-      end
-    end
-
-    def athlete_add_foul
-      if @athlete_stat.update_attribute(:fouls, @athlete_stat.fouls+1)
-        redirect_to match_path(@match), :notice => "Foul added"
-      else
-        render :show
-      end
-    end
-
-    def athlete_remove_foul
-      if @athlete_stat.fouls > 0 && @athlete_stat.update_attribute(:fouls, @athlete_stat.fouls-1)
-        redirect_to match_path(@match), :notice => "Foul removed"
-      else
-        render :show
-      end
-    end
-
-    ################ 
-    #    Participation Stats    #
-    ################
-    def participation_add_goal
-      if @participation.update_attribute(:goals, @participation.goals+1)
-        redirect_to match_path(@match), :notice => "Goal added"
-      else
-        render :show
-      end
-    end
-    def participation_remove_goal
-      if @participation.goals > 0 && @participation.update_attribute(:goals, @participation.goals-1)
-        redirect_to match_path(@match), :notice => "Goal added"
-      else
-        render :show
-      end
-    end
-
-    def participation_add_foul
-      if @participation.update_attribute(:fouls, @participation.fouls+1)
-        redirect_to match_path(@match), :notice => "Foul added"
-      else
-        render :show
-      end
-    end
-    def participation_remove_foul
-      if @participation.fouls > 0 && @participation.update_attribute(:fouls, @participation.fouls-1)
-        redirect_to match_path(@match), :notice => "Foul removed"
       else
         render :show
       end

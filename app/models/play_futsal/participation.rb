@@ -48,5 +48,16 @@ module PlayFutsal
       AthleteStat.by_match(self.match_id).by_team(self.team_id)
     end
 
+    def to_s(home = nil)
+      to_s = case home
+      when TRUE
+        "#{team.to_s} (#{goals})"
+      when FALSE
+        "(#{goals}) #{team.to_s}"
+      else
+        "#{team.to_s}"
+      end
+    end
+
   end
 end

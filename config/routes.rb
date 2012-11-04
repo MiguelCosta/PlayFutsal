@@ -8,12 +8,15 @@ PlayFutsal::Engine.routes.draw do
     end
   end
 
+  get 'matches/live' => 'matches#live', :as => :live_matches
+
   resources :matches do
     resources :events
-
+    
     member do
         put 'begin'
         put 'finish'
+        put 'change'
         put 'athlete_add_goal'
         put 'athlete_remove_goal'
         put 'athlete_add_foul'
