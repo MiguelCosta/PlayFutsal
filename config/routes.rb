@@ -21,8 +21,22 @@ PlayFutsal::Engine.routes.draw do
 
   resources :athlete_stats do
     member do
-      match 'increment/:stat' => 'athlete_stats#increment', :as => :increment, :via => :put
-      match 'decrement/:stat' => 'athlete_stats#decrement', :as => :decrement, :via => :put
+      match 'increment/:stat' => 'athlete_stats#increment', as: :increment, via: :put
+      match 'decrement/:stat' => 'athlete_stats#decrement', as: :decrement, via: :put
+    end
+  end
+
+  resources :participations do
+    member do
+      match 'increment/:stat'    => 'participations#increment', as: :increment, via: :put
+      match 'decrement/:stat'    => 'participations#decrement', as: :decrement, via: :put
+    end
+  end
+
+  resources :group_stats do
+    member do
+      match 'increment' => 'group_stats#increment', as: :increment, via: :put
+      match 'decrement' => 'group_stats#decrement', as: :decrement, via: :put
     end
   end
 

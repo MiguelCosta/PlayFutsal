@@ -8,32 +8,29 @@
  *= require play_futsal/bs-docs-sidebar
  *= require_tree .
  *= require_self
- *= require play_futsal/dataTables/jquery.dataTables.bootstrap
-*/  
+*/
 
-.goal{
+.stat-col {
+  width: 25px;
+  align: center;
   font-weight:bold;
-  background: url("/assets/play_futsal/icon-goal.png");
-  background-repeat:no-repeat;
   display:block;
   padding-top:12px;
   padding-bottom:3px;
+  background-repeat:no-repeat;
+}
+
+.goal{
+  background: url("/assets/play_futsal/icon-goal.png");
+  background-repeat:no-repeat;
 }
 
 .yellowcard{
-  font-weight:bold;
   background: url("/assets/play_futsal/icon-yellowcard.png");
   background-repeat:no-repeat;
-  display:block;
-  padding-top:12px;
-  padding-bottom:3px;
 }
 
 .redcard{
-  font-weight:bold;
   background: url("/assets/play_futsal/icon-redcard.png");
   background-repeat:no-repeat;
-  display:block;
-  padding-top:12px;
-  padding-bottom:3px;
 }

@@ -9,7 +9,11 @@ module PlayFutsal
     #### Accessors ####
 
     attr_accessible  :name,
-                     :order
+                     :position
+
+
+    #### Scopes ####
+    default_scope order('position ASC')
 
   end
 end

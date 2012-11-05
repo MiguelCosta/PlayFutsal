@@ -24,7 +24,6 @@ module PlayFutsal
 
     def show
       @match = Match.find params[:id]
-
       @events = Event.find_all_by_match_id params[:id], :order => 'minute DESC'
       @event  = Event.new
     end
@@ -32,25 +31,29 @@ module PlayFutsal
 
     def new
       @match = Match.new
-      @groups = Group.all
-      @group = params[:group_id]
-      @phases = Phase.all
-      @phase = params[:phase_id]
+      @match.group = Group.find params[:group_id] if params[:group_id]
+      @match.phase = Phase.find params[:phase_id] if params[:phase_id]
+      @groups = Group.find :all
+      @phases = Phase.find :all
+
+      if @match.group
+        @teams = Team.by_group(@match.group)
+      end
     end
 
 
     def edit
       @match = Match.find params[:id]
-      @groups = Group.all
-      @phases = Phase.all
+      @groups = Group.find :all
+      @phases = Phase.find :all
     end
 
 
     def create
       @match = Match.new params[:match]
-      @match.add_participations(params[:home_team][:id], params[:away_team][:id])
 
       if @match.save
+        @match.set_teams(params[:home_team][:id], params[:away_team][:id]) if params[:home_team] && params[:away_team]
         redirect_to match_path(@match), :notice => "Match successfully created"
       else
         @groups = Group.all
@@ -62,11 +65,10 @@ module PlayFutsal
 
     def update
       @match = Match.find params[:id]
-      @home_team_id = params[:home_team][:id]
-      @away_team_id = params[:away_team][:id]
-      if (@match.update_attributes(params[:match])  &&
-          @match.participations.first.update_attribute(:team_id, @home_team_id) &&
-          @match.participations.last.update_attribute(:team_id, @away_team_id))
+      debugger
+      if (@match.update_attributes(params[:match]))#  &&
+          #@match.participations.first.update_attribute(:team_id, params[:home_team][:id]) &&
+          #@match.participations.last.update_attribute(:team_id, params[:away_team][:id]))
 
         redirect_to match_path(@match), :notice => "Match successfully updated"
       else
@@ -77,7 +79,7 @@ module PlayFutsal
 
     def destroy
       Match.destroy params[:id]
-      render :index
+      redirect_to :back
     end
 
     # start the game

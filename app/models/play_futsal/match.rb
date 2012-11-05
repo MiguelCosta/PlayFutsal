@@ -1,6 +1,11 @@
 module PlayFutsal
   class Match < ActiveRecord::Base
 
+    def initialize(*args)
+      super
+      build_participations
+    end
+
     #### Relations ####
 
     belongs_to :phase
@@ -9,49 +14,49 @@ module PlayFutsal
     has_many :events, :dependent => :destroy
     has_many :athlete_stats
 
-    has_many :participations, :class_name =>'PlayFutsal::Participation'
+    has_many :participations, :dependent => :destroy, :class_name =>'PlayFutsal::Participation'
     has_many :teams, :through => :participations
 
+    accepts_nested_attributes_for :participations
+
     def home
-      self.participations.first
+      self.participations.order('id ASC').first
     end
 
     def away
       self.participations.last
     end
 
+    #### Callbacks ####
+    #after_save :create_participations
+
 
     #### Accessors ####
 
     attr_accessible :phase_id,
-      :events,
-      :participations,
-      :teams,
-      :athlete_stats,
-      :home_team_stats,
-      :away_team_stats,
-      :started,
-      :finished,
-      :desc,
-      :datetime
+                    :events,
+                    :participations,
+                    :teams,
+                    :athlete_stats,
+                    :home_team_stats,
+                    :away_team_stats,
+                    :started,
+                    :finished,
+                    :desc,
+                    :datetime,
+                    :group_id,
+                    :phase_id,
+                    :participations_attributes
 
 
     #### Validators ####
 
     validates :desc, :presence => true
-    validate :has_two_participations
-    validate :participants_are_different
-
-    def has_two_participations
-      errors.add(:participations, "Two teams are required") if self.participations.size != 2
-    end
-
-    def participants_are_different
-      errors.add(:participations, "Teams can't be the same") if home.team == away.team
-    end
 
 
     #### Scopes ####
+
+    default_scope -> { order 'datetime ASC' }
 
     # matches belonging to a group
     scope :in_group, lambda { where "group_id IS NOT NULL" }
@@ -64,7 +69,23 @@ module PlayFutsal
     scope :finished,    lambda { where :finished => true  }
 
 
+    def in_progress?
+      started? and not finished?
+    end
+
     #### Methods ####
+
+    def build_participations
+      if self.participations.size != 2
+        self.participations.build
+        self.participations.build
+      end
+    end
+
+    def set_teams(home_team_id, away_team_id)
+      self.home.update_attributes(team_id: home_team_id)
+      self.away.update_attributes(team_id: away_team_id)
+    end
 
     # callback for creating a stats record
     # for each player and team associated with this match
@@ -138,7 +159,7 @@ module PlayFutsal
 
     def refresh_group_stat
       if self.group_id
-
+        debugger
         gsHome = GroupStat.find_by_group_id_and_team_id(self.group_id, self.home.team.id)
         gsHome.refresh_group_stat("home", home.goals, away.goals)
 

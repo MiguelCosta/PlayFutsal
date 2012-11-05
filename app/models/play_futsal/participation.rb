@@ -5,17 +5,21 @@ module PlayFutsal
 
     #belongs_to :match, :dependent => :destroy
     belongs_to :match
-    belongs_to :team, :dependent => :destroy
+    belongs_to :team
 
 
     #### Accessors ####
 
     attr_accessible :team_id,
                     :team,
+                    :match,
                     :goals,
                     :yellow_cards,
                     :red_cards
 
+
+    #### Scopes ####
+    default_scope -> { order 'id ASC' }
 
     #### Validators ####
 
@@ -38,6 +42,10 @@ module PlayFutsal
         value = self.send(stat)
         self.team.add_to_stat(stat, value)
       end
+    end
+
+    def athletes_stats
+      AthleteStat.by_match(self.match_id).by_team(self.team_id)
     end
 
     def to_s(home = nil)

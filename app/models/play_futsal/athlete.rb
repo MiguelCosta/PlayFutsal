@@ -34,6 +34,7 @@ module PlayFutsal
 
 
     #### Scopes ####
+    default_scope -> { order 'id ASC' }
 
     scope :without_team, -> { where :team_id => nil }
 

@@ -26,7 +26,22 @@ module PlayFutsal
                     :matches_played
 
 
+    #### Scopes ####
+    default_scope order('position ASC')
+    
     #### Methods ####
+
+    def move_up
+      @other = GroupStat.find_by_group_id_and_position(self.group_id, self.position + 1)
+      @other.update_attribute(:position, self.position)
+      self.update_attribute(:position, self.position + 1)
+    end
+
+    def move_down
+      @other = GroupStat.find_by_group_id_and_position(self.group_id, self.position - 1)
+      @other.update_attribute(:position, self.position)
+      self.update_attribute(:position, self.position - 1)
+    end
 
     def wins
       wins_home + wins_away

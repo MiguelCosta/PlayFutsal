@@ -1,4 +1,4 @@
-<%= content_for :title do @phase.name end %>
+<%= content_for :title do "Phase - #{@phase.name}" end %>
 
 <div class="hero-unit">
   <%= render 'phase', :phase => @phase %>

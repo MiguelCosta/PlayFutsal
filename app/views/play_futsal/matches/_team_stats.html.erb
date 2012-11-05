@@ -1,18 +1,19 @@
-<h3><%= team.name %></h3>
 <table class='table table-condensed table-hover'>
   <thead>
     <tr>
-      <th><div class="goal"></div></th>
-      <th><div class="yellowcard"></div></th>
-      <th><div class="redcard"></div></th>
+      <th></th>
+      <th><div class="stat-col goal"></div></th>
+      <th><div class="stat-col yellowcard"></div></th>
+      <th><div class="stat-col redcard"></div></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td><%= participation.goals %></td>
-      <td><%= participation.yellow_cards %></td>
-      <td><%= participation.red_cards %></td>
+      <th><%= team.name %></th>
+      <td><%= show_team_stat participation, :goals %><%#= participation.goals %></td>
+      <td><%= show_team_stat participation, :yellow_cards %><%#= participation.yellow_cards %></td>
+      <td><%= show_team_stat participation, :red_cards %><%#= participation.red_cards %></td>
     </tr>
   </tbody>
 </table>
@@ -22,9 +23,9 @@
   <thead>
     <tr>
       <th>Player</th>
-      <th><div class="goal"></div></th>
-      <th><div class="yellowcard"></div></th>
-      <th><div class="redcard"></div></th>
+      <th><div class="stat-col goal"></div></th>
+      <th><div class="stat-col yellowcard"></div></th>
+      <th><div class="stat-col redcard"></div></th>
     </tr>
   </thead>
 
@@ -32,11 +33,11 @@
     <% athletes_stats.each do |stats| %>
       <tr>
         <td><%= link_to stats.athlete.name, athlete_path(stats.athlete) %></td>
-        <% if stats %>
+        
           <td class=""><%= show_athlete_stat stats, :goals %></td>
           <td><%= show_athlete_stat stats, :yellow_cards %></td>
           <td><%= show_athlete_stat stats, :red_cards %></td>
-        <% end %>
+        
       </tr>
     <% end %>
 

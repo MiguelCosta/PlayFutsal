@@ -1,10 +1,10 @@
-<%= content_for :title do 'Matches' end %>
+<%= content_for :title do 'Match List' end %>
 
 <div class="hero-unit">
 <% if admin? %>
   <%= link_to 'New Match', new_match_path, :class => 'btn pull-right' %>
 <% end %>
 
-<%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matches } %>
+<%= render 'play_futsal/matches/table',  :matches => @matches %>
 
 </div>
