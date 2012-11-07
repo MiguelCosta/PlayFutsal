@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029234341) do
+ActiveRecord::Schema.define(:version => 20121016231228) do
 
   create_table "play_auth_authorizations", :force => true do |t|
     t.string   "provider",   :null => false

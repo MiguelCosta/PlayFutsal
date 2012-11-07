@@ -1,11 +1,11 @@
-<%= content_for :title do 'Matches' end %>
+<%= content_for :title do 'Live Games' end %>
 
-<div class="hero-unit">
+<div class="well">
 <% if admin? %>
   <%= link_to 'New Match', new_match_path, :class => 'btn pull-right' %>
 <% end %>
 
-<% if @matches.count > 1 %>
+<% if @matches.count > 0 %>
 <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matches } %>
 <% else %>
 <div class="alert alert-info">

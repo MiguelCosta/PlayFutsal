@@ -11,12 +11,11 @@
 */
 
 .stat-col {
-  width: 25px;
   align: center;
   font-weight:bold;
   display:block;
-  padding-top:12px;
-  padding-bottom:3px;
+  width:15px;
+  height: 15px;
   background-repeat:no-repeat;
 }
 

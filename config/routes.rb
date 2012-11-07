@@ -9,6 +9,7 @@ PlayFutsal::Engine.routes.draw do
   end
 
   get 'matches/live' => 'matches#live', :as => :live_matches
+  get 'pages/home' => 'pages#home', :as => :home_pages
 
   resources :matches do
     resources :events

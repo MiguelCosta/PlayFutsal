@@ -1,6 +1,6 @@
 <%= content_for :title do 'Phase List' end %>
 
-<div class="hero-unit">
+<div class="well">
   <% @phases.each do |phase| %>
     <h3><%= link_to phase.name, phase_path(phase) %></h3>
     <%= render :partial => 'phase', :locals => { :phase => phase } %>

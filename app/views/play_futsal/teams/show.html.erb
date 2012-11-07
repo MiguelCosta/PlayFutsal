@@ -1,6 +1,6 @@
 <%= content_for :title do @team.name end %>
 
-<div class="hero-unit">
+<div class="well">
 
   <% if admin? %>
     <%= link_to 'Delete', team_path(@team), :method => :delete, :class => 'btn pull-right' %>

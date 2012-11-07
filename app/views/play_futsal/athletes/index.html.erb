@@ -1,5 +1,5 @@
 <%= content_for :title do 'Athlete List' end %>
 
-<div class="hero-unit">
+<div class="well">
   <%= render :partial => 'play_futsal/athletes/table', :locals => { :athletes => @athletes } %>
 </div>

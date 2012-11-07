@@ -1,0 +1,21 @@
+<%= content_for :title do 'Home' end %>
+
+<div class="well">
+
+  <!-- <h3>News</h3> -->
+
+  <% if @matchesLive.count > 0 %>
+    <h4>Live</h4>
+    <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesLive } %>
+  <% end %>
+
+  <% if @matchesLast.count > 0 %>
+    <h4>Last Games</h4>
+    <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesLast } %>
+  <% end %>
+
+  <% if @matchesNext.count > 0 %>
+    <h4>Next Games</h4>
+    <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesNext } %>
+  <% end %>
+</div>

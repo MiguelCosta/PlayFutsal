@@ -1,6 +1,6 @@
 <%= content_for :title do 'Match List' end %>
 
-<div class="hero-unit">
+<div class="well">
 <% if admin? %>
   <%= link_to 'New Match', new_match_path, :class => 'btn pull-right' %>
 <% end %>
