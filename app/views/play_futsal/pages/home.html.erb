@@ -9,11 +9,11 @@
     <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesLive } %>
   <% end %>
 
-  <% if @matchesLast.count > 0 %>
+  <!--<% if @matchesLast.count > 0 %>
     <h4>Last Games</h4>
     <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesLast } %>
   <% end %>
-
+  -->
   <% if @matchesNext.count > 0 %>
     <h4>Next Games</h4>
     <%= render :partial => 'play_futsal/matches/table', :locals => { :matches => @matchesNext } %>
