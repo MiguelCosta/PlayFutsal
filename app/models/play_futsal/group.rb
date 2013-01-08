@@ -20,7 +20,7 @@ module PlayFutsal
     def refresh_positons
         pos = 1
         # Há alguma forma de melhorar este método? fazer um map talvez...
-        gamesStats = GroupStat.find_all_by_group_id(self.id, :order => "points DESC")
+        gamesStats = GroupStat.unscoped.find_all_by_group_id(self.id, :order => "points DESC")
         gamesStats.each do |gameStat|
             gameStat.update_attribute(:position, pos)
             pos += 1
